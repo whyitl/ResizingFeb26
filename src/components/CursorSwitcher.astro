@@ -1,0 +1,439 @@
+---
+/**
+ * CursorSwitcher – dropdown component for switching cursor styles site-wide.
+ * Renders a cursor icon that reveals a dropdown on hover with 6 cursor options.
+ * Persists selection to localStorage and manages custom overlay effects.
+ */
+---
+
+<div class="cursor-switcher" id="cursorSwitcher">
+  <!-- Trigger icon -->
+  <button class="cursor-switcher__trigger" aria-label="Change cursor style" aria-expanded="false" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4l7.07 17 2.51-7.39L21 11.07z"/>
+    </svg>
+  </button>
+
+  <!-- Dropdown -->
+  <div class="cursor-switcher__dropdown" id="cursorDropdown" role="menu">
+    <button class="cursor-switcher__option is-active" role="menuitem" data-cursor="default" aria-label="Default">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M4 2l14 10.5-6.5 1.5L8 20z"/>
+        </svg>
+      </span>
+    </button>
+
+    <button class="cursor-switcher__option" role="menuitem" data-cursor="circle-dot" aria-label="Circle Dot">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="8"/>
+          <circle cx="12" cy="12" r="2" fill="currentColor"/>
+        </svg>
+      </span>
+    </button>
+
+    <button class="cursor-switcher__option" role="menuitem" data-cursor="crosshair" aria-label="Crosshair">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+      </span>
+    </button>
+
+    <button class="cursor-switcher__option" role="menuitem" data-cursor="spotlight" aria-label="Spotlight">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" opacity="0.3"/>
+          <circle cx="12" cy="12" r="5" opacity="0.6"/>
+        </svg>
+      </span>
+    </button>
+
+    <button class="cursor-switcher__option" role="menuitem" data-cursor="particle" aria-label="Particle Trail">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <circle cx="6" cy="6" r="2" opacity="0.3"/>
+          <circle cx="10" cy="10" r="2" opacity="0.5"/>
+          <circle cx="14" cy="14" r="2" opacity="0.7"/>
+          <circle cx="18" cy="18" r="2" opacity="1"/>
+        </svg>
+      </span>
+    </button>
+
+    <button class="cursor-switcher__option" role="menuitem" data-cursor="retro" aria-label="Retro">
+      <span class="cursor-switcher__preview">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" stroke="none" shape-rendering="crispEdges">
+          <rect x="0" y="0" width="2" height="2"/>
+          <rect x="0" y="2" width="2" height="2"/>
+          <rect x="0" y="4" width="2" height="2"/>
+          <rect x="0" y="6" width="2" height="2"/>
+          <rect x="0" y="8" width="2" height="2"/>
+          <rect x="0" y="10" width="2" height="2"/>
+          <rect x="2" y="10" width="2" height="2"/>
+          <rect x="4" y="10" width="2" height="2"/>
+          <rect x="2" y="6" width="2" height="2"/>
+          <rect x="4" y="8" width="2" height="2"/>
+          <rect x="6" y="10" width="2" height="2"/>
+          <rect x="8" y="12" width="2" height="2"/>
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .cursor-switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .cursor-switcher__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: var(--fg, #000);
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .cursor-switcher__trigger:hover {
+    opacity: 0.7;
+  }
+
+  .cursor-switcher__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: var(--bg, #fff);
+    border: 1px solid var(--border, rgba(0,0,0,.12));
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+    z-index: 1000;
+  }
+
+  .cursor-switcher__dropdown.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .cursor-switcher__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: var(--fg, #000);
+    transition: background 0.15s ease;
+  }
+
+  .cursor-switcher__option:hover {
+    background: rgba(0,0,0,.05);
+  }
+
+  .cursor-switcher__option.is-active {
+    background: rgba(0,0,0,.06);
+    font-weight: 600;
+  }
+
+  .cursor-switcher__option.is-active .cursor-switcher__preview {
+    border-color: var(--fg, #000);
+  }
+
+  .cursor-switcher__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border, rgba(0,0,0,.12));
+    flex-shrink: 0;
+    background: var(--bg, #fff);
+  }
+
+</style>
+
+<script>
+  /* ───────────────────────────────────────────────
+     Cursor Switcher – dropdown logic + cursor FX
+     ─────────────────────────────────────────────── */
+  (function cursorSwitcherInit() {
+    // ── DOM refs ──
+    const switchers = document.querySelectorAll<HTMLElement>('.cursor-switcher');
+    const body = document.body;
+
+    // ── Overlay elements (created once, shared) ──
+    let circleDot: HTMLElement | null = null;
+    let spotlight: HTMLElement | null = null;
+    let particleCanvas: HTMLCanvasElement | null = null;
+    let particleCtx: CanvasRenderingContext2D | null = null;
+
+    // ── State ──
+    let activeCursor = localStorage.getItem('cursor-style') || 'default';
+    let particles: { x: number; y: number; alpha: number; size: number }[] = [];
+    let animFrameId: number | null = null;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // ── Custom cursor data URIs ──
+    const retroCursorSVG = `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='black' shape-rendering='crispEdges'><rect x='0' y='0' width='2' height='2'/><rect x='0' y='2' width='2' height='2'/><rect x='0' y='4' width='2' height='2'/><rect x='0' y='6' width='2' height='2'/><rect x='0' y='8' width='2' height='2'/><rect x='0' y='10' width='2' height='2'/><rect x='0' y='12' width='2' height='2'/><rect x='0' y='14' width='2' height='2'/><rect x='2' y='14' width='2' height='2'/><rect x='4' y='14' width='2' height='2'/><rect x='2' y='10' width='2' height='2'/><rect x='4' y='12' width='2' height='2'/><rect x='6' y='14' width='2' height='2'/><rect x='8' y='16' width='2' height='2'/><rect x='10' y='18' width='2' height='2'/></svg>`;
+
+    const retroCursorDataURI = `url("data:image/svg+xml,${encodeURIComponent(retroCursorSVG)}") 0 0, auto`;
+
+    // ── Helpers ──
+
+    function createOverlayElements() {
+      // Circle dot
+      if (!document.getElementById('cursor-circle-dot')) {
+        circleDot = document.createElement('div');
+        circleDot.id = 'cursor-circle-dot';
+        circleDot.style.cssText = `
+          position: fixed; pointer-events: none; z-index: 99999;
+          width: 24px; height: 24px; border-radius: 50%;
+          border: 2px solid #000; background: transparent;
+          transform: translate(-50%, -50%);
+          transition: width 0.15s, height 0.15s;
+          display: none;
+        `;
+        const innerDot = document.createElement('div');
+        innerDot.style.cssText = `
+          position: absolute; top: 50%; left: 50%;
+          width: 4px; height: 4px; border-radius: 50%;
+          background: #000; transform: translate(-50%, -50%);
+        `;
+        circleDot.appendChild(innerDot);
+        document.body.appendChild(circleDot);
+      } else {
+        circleDot = document.getElementById('cursor-circle-dot');
+      }
+
+      // Spotlight
+      if (!document.getElementById('cursor-spotlight')) {
+        spotlight = document.createElement('div');
+        spotlight.id = 'cursor-spotlight';
+        spotlight.style.cssText = `
+          position: fixed; pointer-events: none; z-index: 99998;
+          width: 200px; height: 200px; border-radius: 50%;
+          background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 40%, transparent 70%);
+          border: 1px solid rgba(0,0,0,0.06);
+          transform: translate(-50%, -50%);
+          display: none;
+        `;
+        document.body.appendChild(spotlight);
+      } else {
+        spotlight = document.getElementById('cursor-spotlight');
+      }
+
+      // Particle canvas
+      if (!document.getElementById('cursor-particle-canvas')) {
+        particleCanvas = document.createElement('canvas');
+        particleCanvas.id = 'cursor-particle-canvas';
+        particleCanvas.style.cssText = `
+          position: fixed; top: 0; left: 0;
+          width: 100vw; height: 100vh;
+          pointer-events: none; z-index: 99997;
+          display: none;
+        `;
+        document.body.appendChild(particleCanvas);
+      } else {
+        particleCanvas = document.getElementById('cursor-particle-canvas') as HTMLCanvasElement;
+      }
+      particleCtx = particleCanvas?.getContext('2d') || null;
+    }
+
+    function resizeParticleCanvas() {
+      if (!particleCanvas) return;
+      particleCanvas.width = window.innerWidth;
+      particleCanvas.height = window.innerHeight;
+    }
+
+    function hideAllOverlays() {
+      if (circleDot) circleDot.style.display = 'none';
+      if (spotlight) spotlight.style.display = 'none';
+      if (particleCanvas) particleCanvas.style.display = 'none';
+      if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
+      particles = [];
+    }
+
+    function applyCursor(cursorId: string) {
+      hideAllOverlays();
+      body.style.cursor = '';
+      document.documentElement.style.cursor = '';
+
+      switch (cursorId) {
+        case 'default':
+          body.style.cursor = 'default';
+          break;
+        case 'circle-dot':
+          body.style.cursor = 'none';
+          document.documentElement.style.cursor = 'none';
+          if (circleDot) circleDot.style.display = 'block';
+          break;
+        case 'crosshair':
+          body.style.cursor = 'crosshair';
+          document.documentElement.style.cursor = 'crosshair';
+          break;
+        case 'spotlight':
+          if (spotlight) spotlight.style.display = 'block';
+          break;
+        case 'particle':
+          body.style.cursor = 'default';
+          if (particleCanvas) {
+            particleCanvas.style.display = 'block';
+            resizeParticleCanvas();
+            startParticleLoop();
+          }
+          break;
+        case 'retro':
+          body.style.cursor = retroCursorDataURI;
+          document.documentElement.style.cursor = retroCursorDataURI;
+          break;
+      }
+
+      // Update all switcher instances
+      switchers.forEach(sw => {
+        sw.querySelectorAll('.cursor-switcher__option').forEach(opt => {
+          opt.classList.toggle('is-active', (opt as HTMLElement).dataset.cursor === cursorId);
+        });
+      });
+
+      activeCursor = cursorId;
+      localStorage.setItem('cursor-style', cursorId);
+    }
+
+    // ── Mouse tracking ──
+    function onMouseMove(e: MouseEvent) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (circleDot && activeCursor === 'circle-dot') {
+        circleDot.style.left = mouseX + 'px';
+        circleDot.style.top = mouseY + 'px';
+      }
+
+      if (spotlight && activeCursor === 'spotlight') {
+        spotlight.style.left = mouseX + 'px';
+        spotlight.style.top = mouseY + 'px';
+      }
+
+      if (activeCursor === 'particle') {
+        for (let i = 0; i < 2; i++) {
+          particles.push({
+            x: mouseX + (Math.random() - 0.5) * 8,
+            y: mouseY + (Math.random() - 0.5) * 8,
+            alpha: 1,
+            size: Math.random() * 3 + 1.5,
+          });
+        }
+      }
+    }
+
+    // ── Particle animation loop ──
+    function startParticleLoop() {
+      if (animFrameId) return;
+      function loop() {
+        if (!particleCtx || !particleCanvas) return;
+        particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+        particles = particles.filter(p => p.alpha > 0.01);
+        particles.forEach(p => {
+          particleCtx!.beginPath();
+          particleCtx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          particleCtx!.fillStyle = `rgba(0, 0, 0, ${p.alpha})`;
+          particleCtx!.fill();
+          p.alpha -= 0.025;
+          p.size *= 0.98;
+        });
+
+        animFrameId = requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    // ── Dropdown logic ──
+    switchers.forEach(sw => {
+      const trigger = sw.querySelector<HTMLButtonElement>('.cursor-switcher__trigger');
+      const dropdown = sw.querySelector<HTMLElement>('.cursor-switcher__dropdown');
+      if (!trigger || !dropdown) return;
+
+      let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+
+      function openDropdown() {
+        if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
+        dropdown!.classList.add('is-open');
+        trigger!.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeDropdown() {
+        hoverTimeout = setTimeout(() => {
+          dropdown!.classList.remove('is-open');
+          trigger!.setAttribute('aria-expanded', 'false');
+        }, 150);
+      }
+
+      sw.addEventListener('mouseenter', openDropdown);
+      sw.addEventListener('mouseleave', closeDropdown);
+
+      // Also toggle on click for touch
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('is-open');
+        if (isOpen) {
+          dropdown.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+        } else {
+          dropdown.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Option clicks
+      dropdown.querySelectorAll<HTMLElement>('.cursor-switcher__option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const cursorId = opt.dataset.cursor;
+          if (cursorId) applyCursor(cursorId);
+        });
+      });
+    });
+
+    // Close all dropdowns on outside click
+    document.addEventListener('click', (e) => {
+      switchers.forEach(sw => {
+        if (!sw.contains(e.target as Node)) {
+          const dd = sw.querySelector<HTMLElement>('.cursor-switcher__dropdown');
+          const tr = sw.querySelector<HTMLButtonElement>('.cursor-switcher__trigger');
+          if (dd) dd.classList.remove('is-open');
+          if (tr) tr.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // ── Initialise ──
+    createOverlayElements();
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('resize', resizeParticleCanvas);
+
+    // Apply saved cursor on load
+    applyCursor(activeCursor);
+  })();
+</script>

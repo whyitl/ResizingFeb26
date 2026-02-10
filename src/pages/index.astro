@@ -16,26 +16,265 @@ const jsonLd = {
   description={site.description}
   canonicalPath="/"
   jsonLd={jsonLd}
+  showHeader={false}
+  showFooter={false}
 >
-  <article class="prose">
-    <h1>{site.tagline}</h1>
-    <p class="lead">{site.description}</p>
+  <div class="loworks-layout">
+    <!-- Left Side -->
+    <div class="loworks-left">
+      <div class="loworks-logo">
+        <span class="logo-text">Resizing.</span>
+      </div>
 
-    <section class="block">
-      <h2>What this is</h2>
-      <p>
-        Astro Baseline is a boring starter: clear structure, SEO defaults, and minimal CSS.
-        No UI kit. No framework runtime.
-      </p>
-    </section>
+      <div class="loworks-inquire">
+        <p class="tagline">Intentional web design</p>
+        <p class="tagline-sub">for conversions and momentum</p>
+        <a href="/contact" class="inquire-button">Learn More</a>
+      </div>
+    </div>
 
-    <section class="block">
-      <h2>Next steps</h2>
-      <ul>
-        <li>Customize <code>src/content/site.ts</code></li>
-        <li>Adjust tokens in <code>src/styles/partials/tokens.css</code></li>
-        <li>Add your pages and components</li>
-      </ul>
-    </section>
-  </article>
+    <!-- Right Side Navigation -->
+    <nav class="loworks-nav">
+      <a href="/works" class="nav-item">Works</a>
+      <a href="/journal" class="nav-item">Journal</a>
+      <a href="/creation" class="nav-item">Creation</a>
+      <a href="/about" class="nav-item">About</a>
+      <div class="nav-lang">
+        <span>EN</span>
+        <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </nav>
+  </div>
 </Base>
+
+<script>
+  // Shrink logo on scroll, but keep it in the flow (no sticky positioning)
+  let hasScrolled = false;
+  
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const logoText = document.querySelector('.logo-text');
+    
+    if (!logoText) return;
+    
+    // Shrink the logo as user scrolls down (completes at 200px scroll)
+    if (scrollY > 0 && scrollY <= 200) {
+      hasScrolled = true;
+      const scale = Math.max(0.4, 1 - (scrollY / 400)); // Shrinks from 1 to 0.4
+      logoText.style.transform = `scale(${scale})`;
+      logoText.style.transformOrigin = 'left top';
+    } else if (scrollY === 0) {
+      // Reset when back at top
+      hasScrolled = false;
+      logoText.style.transform = 'scale(1)';
+    } else if (scrollY > 200 && hasScrolled) {
+      // Keep at minimum size but let it scroll with the page
+      logoText.style.transform = 'scale(0.4)';
+      logoText.style.transformOrigin = 'left top';
+    }
+  });
+</script>
+
+<style>
+  .loworks-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 50vh;
+    padding: 32px 40px;
+    max-width: 100%;
+  }
+
+  .loworks-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .loworks-logo {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .logo-text {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: transform 0.15s ease-out;
+  }
+
+  .logo-reg {
+    font-size: 22px;
+    font-weight: 400;
+    margin-left: 2px;
+    vertical-align: super;
+    line-height: 1;
+  }
+
+  .loworks-social {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+
+  .social-label {
+    color: #000;
+    margin-right: 200px;
+  }
+
+  .social-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: 14px;
+  }
+
+  .social-link:first-of-type {
+    margin-right: 100px;
+  }
+
+  .social-link:hover {
+    opacity: 0.7;
+  }
+
+  .loworks-inquire {
+    margin-top: 0;
+  }
+
+  .tagline {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .tagline-sub {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.1;
+    color: #000;
+    opacity: 0.85;
+  }
+
+  .inquire-button {
+    display: inline-block !important;
+    margin-top: 12px;
+    padding: 6px 16px !important;
+    background-color: rgb(59, 82, 73) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 50px !important;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+    border: none;
+  }
+
+  .inquire-button:hover {
+    opacity: 0.85;
+  }
+
+  .inquire-item {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    line-height: 1.5;
+  }
+
+  .inquire-label {
+    min-width: 24px;
+    color: #000;
+  }
+
+  .inquire-value {
+    color: #000;
+  }
+
+  .inquire-email {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .inquire-email:hover {
+    text-decoration: underline;
+  }
+
+  .loworks-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    padding-top: 4px;
+  }
+
+  .nav-item {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .nav-item:hover {
+    opacity: 0.7;
+  }
+
+  .nav-lang {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .lang-arrow {
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .loworks-layout {
+      flex-direction: column;
+      padding: 32px 24px;
+      gap: 40px;
+    }
+
+    .loworks-nav {
+      align-items: flex-start;
+    }
+
+    .loworks-social {
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .social-label {
+      margin-right: 40px;
+    }
+
+    .social-link:first-of-type {
+      margin-right: 40px;
+    }
+
+    .logo-text {
+      font-size: 36px;
+    }
+
+    .logo-reg {
+      font-size: 12px;
+    }
+  }
+</style>

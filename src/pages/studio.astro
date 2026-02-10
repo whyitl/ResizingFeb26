@@ -1,0 +1,24 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../content/site";
+
+const title = `Studio — ${site.name}`;
+---
+
+<Base
+  title={title}
+  description={`About the ${site.name} studio`}
+  canonicalPath="/studio"
+>
+  <article class="prose">
+    <h1>Studio</h1>
+
+    <p class="lead">
+      Learn more about our studio, our team, and our approach.
+    </p>
+
+    <p>
+      This is where you can share information about your studio, team members, and your creative process.
+    </p>
+  </article>
+</Base>

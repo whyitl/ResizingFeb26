@@ -1,10 +1,10 @@
 :root{
-  --bg: #fbfbf9;
-  --fg: #1a1a1a;
+  --bg: #FAFAFA;
+  --fg: #000000;
   --muted: #5b5b5b;
-  --link: #0b3d91;
+  --link: #000000;
   --border: rgba(0,0,0,.12);
-  --maxw: 900px;
+  --maxw: 100%;
   --space-1: 8px;
   --space-2: 12px;
   --space-3: 16px;

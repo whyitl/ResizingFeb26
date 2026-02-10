@@ -1,0 +1,24 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../content/site";
+
+const title = `Services — ${site.name}`;
+---
+
+<Base
+  title={title}
+  description={`Services offered by ${site.name}`}
+  canonicalPath="/services"
+>
+  <article class="prose">
+    <h1>Services</h1>
+
+    <p class="lead">
+      We offer a range of services to help you achieve your goals.
+    </p>
+
+    <p>
+      This is where you can describe the services you provide to your clients.
+    </p>
+  </article>
+</Base>

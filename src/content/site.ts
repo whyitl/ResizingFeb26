@@ -46,10 +46,10 @@ export const site: SiteConfig = {
     }
   },
   nav: [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-    { label: "Legal", href: "/legal" }
+    { label: "Services", href: "/services" },
+    { label: "Studio", href: "/studio" },
+    { label: "Work", href: "/work" },
+    { label: "Contact", href: "/contact" }
   ],
   seo: {
     ogImage: "/images/og/og-default.jpg",

@@ -1,5 +1,6 @@
 ---
 import { site, type SiteNavItem } from "../content/site";
+import CursorSwitcher from "./CursorSwitcher.astro";
 
 const { brand = site.name, nav = site.nav } = Astro.props as {
   brand?: string;
@@ -12,18 +13,41 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
 
 <header class="header">
   <div class="header__inner">
-    <a class="header__brand" href="/">{brand}</a>
+    <a class="header__brand" href="/" onclick="window.location.href = '/'; window.location.reload();">
+      {brand.includes("Resizing") ? (
+        <>
+          {brand.split("Resizing")[0]}<span class="brand-highlight">Resizing</span>{brand.split("Resizing")[1]}
+        </>
+      ) : brand}
+    </a>
 
-    <nav class="header__nav" aria-label="Primary">
-      <ul class="nav">
-        {nav.map((item) => (
-          <li class="nav__item">
-            <a class={`nav__link ${isActive(item.href) ? "is-active" : ""}`} href={item.href}>
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div class="header__right">
+      <nav class="header__nav" aria-label="Primary">
+        <ul class="nav">
+          {nav.map((item) => (
+            <li class="nav__item">
+              <a class={`nav__link ${isActive(item.href) ? "is-active" : ""}`} href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <CursorSwitcher />
+    </div>
   </div>
 </header>
+
+<style>
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  :global(.brand-highlight) {
+    font-weight: 900;
+    font-size: 3em;
+    line-height: 1;
+  }
+</style>

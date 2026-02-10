@@ -1,7 +1,7 @@
-# Astro Baseline
+# Resizing
 A boring, production-ready Astro starter.
 
-Astro Baseline is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
+Resizing is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
 
 No UI kit.<br>
 No runtime JavaScript by default.<br>
@@ -11,7 +11,7 @@ Just solid structure, senior defaults, and a clear separation of concerns.
 
 ## Philosophy
 
-Astro Baseline follows a simple rule:
+Resizing follows a simple rule:
 
 **HTML is the source of truth.**
 
@@ -151,7 +151,7 @@ No JSON-LD pollution by default.
 
 ## Environment
 
-Astro Baseline expects the following environment variable:
+Resizing expects the following environment variable:
 
 `SITE_URL=https://example.com`
 
@@ -186,9 +186,9 @@ If you want a UI kit or heavy interactivity out of the box, this is not for you.
 - “Install and ship in 5 minutes” demos
 - Framework-centric mental models
 
-## Extending Astro Baseline
+## Extending Resizing
 
-Astro Baseline is designed to pair naturally with:
+Resizing is designed to pair naturally with:
 
 - **Astro Content Collections**
 - **Build-time tools** (e.g. Frontmatter Core)
@@ -206,7 +206,7 @@ Build good websites.
 
 ## Final note
 
-Astro Baseline is intentionally boring.
+Resizing is intentionally boring.
 
 That’s the point.
 

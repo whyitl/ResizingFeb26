@@ -17,8 +17,118 @@ const title = `Work — ${site.name}`;
       Our portfolio showcases the projects we've completed and the results we've achieved.
     </p>
 
-    <p>
-      This is where you can display your work, case studies, and project highlights.
-    </p>
+    <div class="work-list">
+      <details class="work-item">
+        <summary>
+          <h3>TUCN Media</h3>
+          <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+            Visit Site →
+          </a>
+        </summary>
+        <div class="work-content">
+          <p>
+            TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
+          </p>
+          <div class="work-images">
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
+          </div>
+        </div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <h3>Pure Glow Electric</h3>
+          <a href="https://pureglowelectric.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+            Visit Site →
+          </a>
+        </summary>
+        <div class="work-content">
+          <p>
+            Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
+          </p>
+          <div class="work-images">
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Homepage" alt="Pure Glow Electric homepage" />
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Services" alt="Pure Glow Electric services" />
+          </div>
+        </div>
+      </details>
+    </div>
   </article>
 </Base>
+
+<style>
+  .work-list {
+    margin-top: 2rem;
+  }
+
+  .work-item {
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .work-item:hover {
+    border-color: var(--color-text, #1a1a1a);
+  }
+
+  .work-item summary {
+    cursor: pointer;
+    padding: 1.5rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .work-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .work-item summary h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .work-item summary a {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--color-text, #1a1a1a);
+    border: 1px solid currentColor;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .work-item summary a:hover {
+    background: var(--color-text, #1a1a1a);
+    color: var(--color-bg, #ffffff);
+  }
+
+  .work-content {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--color-border, #e5e5e5);
+  }
+
+  .work-content p {
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .work-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .work-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--color-border, #e5e5e5);
+  }
+</style>

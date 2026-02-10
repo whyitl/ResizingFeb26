@@ -29,10 +29,10 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Astro Baseline",
+  name: "Resizing",
   tagline: "A boring, production-ready Astro starter.",
   description:
-    "Astro Baseline is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
+    "Resizing is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
   url: import.meta.env.SITE_URL ?? "https://example.com",
   locale: "en",
   author: {

@@ -18,7 +18,7 @@ const jsonLd = {
   canonicalPath="/"
   jsonLd={jsonLd}
   showHeader={false}
-  showFooter={false}
+  showFooter={true}
 >
   <div class="page-layout">
     <div class="page-content">
@@ -81,6 +81,79 @@ const jsonLd = {
         </div>
       </section>
 
+      <section class="showcased-work-section">
+        <h2 class="showcased-title">Showcased Work</h2>
+        <div class="work-table">
+          <div class="table-header">
+            <div class="col-year">YEAR</div>
+            <div class="col-client">CLIENT</div>
+            <div class="col-type">NICHE</div>
+            <div class="col-tech">TECHNOLOGY</div>
+          </div>
+          <div class="table-body">
+            <div class="table-row" data-accordion>
+              <button class="row-summary" aria-expanded="false">
+                <div class="col-year">2025</div>
+                <div class="col-client">TUCN Media</div>
+                <div class="col-type">Marketing</div>
+                <div class="col-tech">React, Vite, Tailwind</div>
+              </button>
+              <div class="row-details">
+                <div class="details-content">
+                  <p class="details-description">
+                    TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
+                  </p>
+                  <div class="details-images">
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
+                  </div>
+                  <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" class="visit-site-btn">
+                    Visit Site →
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="table-row" data-accordion>
+              <button class="row-summary" aria-expanded="false">
+                <div class="col-year">2025</div>
+                <div class="col-client">PureGlow Electric</div>
+                <div class="col-type">Trades (Electrical)</div>
+                <div class="col-tech">React, TypeScript, Tailwind</div>
+              </button>
+              <div class="row-details">
+                <div class="details-content">
+                  <p class="details-description">
+                    Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
+                  </p>
+                  <div class="details-images">
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Homepage" alt="Pure Glow Electric homepage" />
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Services" alt="Pure Glow Electric services" />
+                  </div>
+                  <a href="https://pureglowelectric.com" target="_blank" rel="noopener noreferrer" class="visit-site-btn">
+                    Visit Site →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="studio-section">
+        <div class="studio-inner">
+          <div class="studio-left">
+            <h2 class="studio-title">The Studio</h2>
+            <p class="studio-body">
+              Resizing is a web design studio for small and scaling businesses that want a professional online presence without the headache. Most of our clients aren't trying to become bloggers or spend weekends wrestling with WordPress — they just need a fast, reliable site that looks sharp, brings in leads, and gets out of the way so they can focus on actually running their business.
+            </p>
+            <a href="/studio" class="studio-link">More about us →</a>
+          </div>
+          <div class="studio-right">
+            <img src="/photodump.gif" alt="Studio photo dump" class="studio-gif" />
+          </div>
+        </div>
+      </section>
+
       <!-- Vertical Navigation on the right -->
       <nav class="vertical-nav">
         <a href="/services" class="nav-item">Services</a>
@@ -135,19 +208,19 @@ const jsonLd = {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;
     margin-bottom: 12px;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    will-change: transform, position;
+    transition: transform 0.3s ease-out;
 
     /* JS-controlled custom properties for the header bar */
     --header-line-top: 78px;
     --header-opacity: 0;
+    --header-translate-y: 0px;
   }
 
-  /* When shrunk, remove sticky and move out of view */
+  /* When fully shrunk, remove sticky positioning and move out of view */
   .header-brand.shrunk {
     position: relative;
-    transform: translateY(-120px);
-    opacity: 0;
-    pointer-events: none;
+    transform: translateY(var(--header-translate-y));
   }
 
   /* White background — masks content scrolling behind the header */
@@ -371,6 +444,7 @@ const jsonLd = {
     min-height: 100vh;
     box-sizing: border-box;
     will-change: transform;
+    overflow: visible;
   }
 
   /* Cards Section */
@@ -432,6 +506,230 @@ const jsonLd = {
     margin: 12px 0 0 0;
   }
 
+  /* The Studio Section */
+  .studio-section {
+    margin-top: 80px;
+    padding: 60px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .studio-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .studio-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 120px;
+  }
+
+  .studio-title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #000;
+    margin: 0 0 8px 0;
+  }
+
+  .studio-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .studio-link {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
+  }
+
+  .studio-link:hover {
+    opacity: 0.6;
+  }
+
+  .studio-right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .studio-gif {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  /* Showcased Work Section */
+  .showcased-work-section {
+    margin-top: 80px;
+    padding: 40px 0 80px 0;
+    animation: fadeInUp 0.8s ease-out 1.7s forwards;
+    opacity: 0;
+  }
+
+  .showcased-title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #000;
+    margin: 0 0 40px 0;
+  }
+
+  .work-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .table-header,
+  .row-summary {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr;
+    gap: 32px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .table-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 6px 0 8px 0;
+  }
+
+  .table-header > div {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .table-row {
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .table-row:last-child {
+    border-bottom: none;
+  }
+
+  .row-summary {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: none;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+  }
+
+  .row-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .row-summary:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .table-row.is-open .row-summary {
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .col-year,
+  .col-client,
+  .col-type,
+  .col-tech {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  .col-year {
+    color: #999;
+  }
+
+  .col-tech {
+    color: #666;
+  }
+
+  .row-details {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s ease;
+  }
+
+  .table-row.is-open .row-details {
+    opacity: 1;
+  }
+
+  .details-content {
+    max-width: 900px;
+    padding: 24px 0;
+  }
+
+  .details-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 24px;
+  }
+
+  .details-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .details-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .visit-site-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .visit-site-btn:hover {
+    background: #000;
+    color: #fff;
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -462,6 +760,25 @@ const jsonLd = {
       margin-top: 48px;
     }
 
+    .studio-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .studio-right {
+      justify-content: flex-start;
+    }
+
+    .table-header,
+    .row-summary {
+      grid-template-columns: 80px 1fr 1fr 1fr;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .table-header > div {
+      font-size: 10px;
+    }
 
     .vertical-nav {
       position: static;
@@ -498,6 +815,41 @@ const jsonLd = {
     .inquire-button {
       padding: 6px 14px !important;
       font-size: 12px;
+    }
+
+    .showcased-work-section {
+      margin-top: 60px;
+    }
+
+    .showcased-title {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+
+    .table-header {
+      display: none;
+    }
+
+    .row-summary {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 0;
+    }
+
+    .col-year,
+    .col-client,
+    .col-type,
+    .col-tech {
+      font-size: 13px;
+    }
+
+    .col-client {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .details-images {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -564,12 +916,16 @@ const jsonLd = {
       const scale = getLogoScale(scrollY);
       logo.style.transform = `scale(${scale})`;
 
-      // ── Once logo is fully shrunk, remove sticky positioning and move header out of view ──
+      // ── Once logo is fully shrunk, remove sticky and move out of view ──
       const isFullyShrunk = scrollY >= LOGO_SHRINK_START + LOGO_SHRINK_RANGE;
       if (isFullyShrunk) {
         headerBrand.classList.add('shrunk');
+        // Move it up and out of view (negative translateY)
+        const translateOut = -100; // Adjust this value to control how far it goes up
+        headerBrand.style.setProperty('--header-translate-y', `${translateOut}px`);
       } else {
         headerBrand.classList.remove('shrunk');
+        headerBrand.style.setProperty('--header-translate-y', '0px');
       }
 
       // ── Move content up to stay with the shrinking logo ──
@@ -581,7 +937,7 @@ const jsonLd = {
       headerBrand.style.setProperty('--header-line-top', `${visualLogoBottom}px`);
 
       // ── Header bar: fade in as the hero-divider reaches the header area ──
-      if (heroDivider && !isFullyShrunk) {
+      if (heroDivider) {
         const dividerTop = heroDivider.getBoundingClientRect().top;
         // The line's viewport position = header-brand sticky top (10px) + visualLogoBottom
         const headerLineY = 10 + visualLogoBottom;
@@ -620,4 +976,72 @@ const jsonLd = {
   }
 
   initScrollEffects();
+
+  // ── Work accordion ──
+  function initWorkAccordion() {
+    const rows = document.querySelectorAll<HTMLElement>('.table-row[data-accordion]');
+
+    rows.forEach(row => {
+      const btn = row.querySelector<HTMLButtonElement>('.row-summary');
+      const panel = row.querySelector<HTMLElement>('.row-details');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', () => {
+        const isOpen = row.classList.contains('is-open');
+
+        // Close all others
+        rows.forEach(other => {
+          if (other !== row && other.classList.contains('is-open')) {
+            const otherPanel = other.querySelector<HTMLElement>('.row-details');
+            const otherBtn = other.querySelector<HTMLButtonElement>('.row-summary');
+            if (otherPanel) {
+              otherPanel.style.maxHeight = otherPanel.scrollHeight + 'px';
+              requestAnimationFrame(() => {
+                otherPanel.style.maxHeight = '0';
+              });
+            }
+            other.classList.remove('is-open');
+            otherBtn?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        if (isOpen) {
+          // Close this one
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0';
+          });
+          row.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          // Open this one
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          row.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+
+          // Remove inline max-height after transition so content can reflow
+          panel.addEventListener('transitionend', function handler() {
+            if (row.classList.contains('is-open')) {
+              panel.style.maxHeight = 'none';
+            }
+            panel.removeEventListener('transitionend', handler);
+          });
+        }
+      });
+    });
+
+    // Open the first row by default
+    const firstRow = rows[0];
+    if (firstRow) {
+      const panel = firstRow.querySelector<HTMLElement>('.row-details');
+      const btn = firstRow.querySelector<HTMLButtonElement>('.row-summary');
+      if (panel && btn) {
+        firstRow.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = 'none';
+      }
+    }
+  }
+
+  initWorkAccordion();
 </script>

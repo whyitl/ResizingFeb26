@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
     <div class="footer__left">
       <span class="footer__logo">Resizing</span>
       <div class="footer__info">
-        <p>Currently Working, In Calgary, AB</p>
+        <p id="calgary-time"></p>
         <p>contact@resizing.ca</p>
       </div>
       <p class="footer__copyright">© {year} Resizing. All rights reserved.</p>
@@ -41,10 +41,10 @@ const year = new Date().getFullYear();
 
 <style>
   .footer {
-    background: #f0f0f0;
-    border-radius: 12px;
+    background: rgb(59, 82, 73);
     padding: 60px 48px;
-    margin: 40px 10px 10px 10px;
+    margin: 0;
+    width: 100%;
   }
 
   .footer__inner {
@@ -65,7 +65,7 @@ const year = new Date().getFullYear();
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
-    color: #222;
+    color: #ffffff;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
@@ -78,14 +78,18 @@ const year = new Date().getFullYear();
   .footer__info p {
     font-size: 14px;
     font-weight: 400;
-    color: #555;
+    color: rgba(255, 255, 255, 0.8);
     margin: 0;
     line-height: 1.5;
   }
 
+  #calgary-time {
+    cursor: help;
+  }
+
   .footer__copyright {
     font-size: 13px;
-    color: #888;
+    color: rgba(255, 255, 255, 0.6);
     margin: 0;
     margin-top: 8px;
   }
@@ -106,14 +110,14 @@ const year = new Date().getFullYear();
   .footer__col-title {
     font-size: 15px;
     font-weight: 600;
-    color: #222;
+    color: #ffffff;
     margin: 0 0 4px 0;
   }
 
   .footer__col a {
     font-size: 14px;
     font-weight: 400;
-    color: #555;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     line-height: 1.6;
     transition: opacity 0.2s ease;
@@ -150,3 +154,45 @@ const year = new Date().getFullYear();
     }
   }
 </style>
+
+<script>
+  function updateCalgaryTime() {
+    const timeElement = document.getElementById('calgary-time');
+    if (!timeElement) return;
+    
+    const now = new Date();
+    
+    // Get Calgary time string
+    const timeString = now.toLocaleTimeString('en-CA', {
+      timeZone: 'America/Edmonton',
+      hour12: true,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+    
+    // Get timezone abbreviation (MST or MDT)
+    const timeZone = now.toLocaleTimeString('en-US', {
+      timeZone: 'America/Edmonton',
+      timeZoneName: 'short'
+    }).split(' ').pop();
+    
+    // Get the hour in Calgary time
+    const calgaryHour = parseInt(now.toLocaleTimeString('en-CA', {
+      timeZone: 'America/Edmonton',
+      hour12: false,
+      hour: '2-digit'
+    }));
+    
+    // Set hover message based on working hours (8am-4pm)
+    const hoverMessage = (calgaryHour >= 8 && calgaryHour < 16) 
+      ? 'We are working' 
+      : 'Currently sleeping';
+    
+    timeElement.textContent = `${timeString} ${timeZone}, Calgary`;
+    timeElement.title = hoverMessage;
+  }
+  
+  updateCalgaryTime();
+  setInterval(updateCalgaryTime, 1000);
+</script>

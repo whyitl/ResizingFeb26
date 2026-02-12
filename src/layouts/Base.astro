@@ -2,6 +2,7 @@
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ContactSection from "../components/ContactSection.astro";
 import SkipLink from "../components/SkipLink.astro";
 import { site } from "../content/site";
 import Cloudfare from "../components/Cloudfare.astro";
@@ -42,11 +43,18 @@ const canonical = new URL(canonicalPath, site.url).toString();
   </head>
 
   <body class="page">
-    <SkipLink />
-    {showHeader && <Header />}
-    <main id="main" class={`page__main ${mainCentered ? "page__main--centered" : ""}`}>
-      <slot />
-    </main>
-    {showFooter && <Footer />}
+    <div class="page__content">
+      <SkipLink />
+      {showHeader && <Header />}
+      <main id="main" class={`page__main ${mainCentered ? "page__main--centered" : ""}`}>
+        <slot />
+      </main>
+      {showFooter && <ContactSection />}
+    </div>
+    {showFooter && (
+      <div class="reveal-footer">
+        <Footer />
+      </div>
+    )}
   </body>
 </html>

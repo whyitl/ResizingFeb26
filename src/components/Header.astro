@@ -43,6 +43,13 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .header__nav {
+    position: relative;
+    z-index: 1;
   }
 
   :global(.brand-highlight) {

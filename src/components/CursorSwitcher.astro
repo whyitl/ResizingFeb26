@@ -208,7 +208,7 @@
         circleDot = document.createElement('div');
         circleDot.id = 'cursor-circle-dot';
         circleDot.style.cssText = `
-          position: fixed; pointer-events: none; z-index: 99999;
+          position: fixed; pointer-events: none; z-index: 9999;
           width: 24px; height: 24px; border-radius: 50%;
           border: 2px solid #000; background: transparent;
           transform: translate(-50%, -50%);
@@ -232,7 +232,7 @@
         spotlight = document.createElement('div');
         spotlight.id = 'cursor-spotlight';
         spotlight.style.cssText = `
-          position: fixed; pointer-events: none; z-index: 99998;
+          position: fixed; pointer-events: none; z-index: 9998;
           width: 200px; height: 200px; border-radius: 50%;
           background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.01) 40%, transparent 70%);
           border: 1px solid rgba(0,0,0,0.06);
@@ -251,7 +251,7 @@
         particleCanvas.style.cssText = `
           position: fixed; top: 0; left: 0;
           width: 100vw; height: 100vh;
-          pointer-events: none; z-index: 99997;
+          pointer-events: none; z-index: 9997;
           display: none;
         `;
         document.body.appendChild(particleCanvas);

@@ -2,8 +2,10 @@
   --bg: #fafafa;
   --fg: #000000;
   --muted: #5b5b5b;
-  --link: #000000;
+  --link: rgb(59, 82, 73);
+  --link-hover: rgb(49, 72, 63);
   --border: rgba(0,0,0,.12);
+  --border-green: rgba(59, 82, 73, 0.3);
   --maxw: 100%;
   --space-1: 8px;
   --space-2: 12px;

@@ -1,3 +1,8 @@
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Web Components: prevent flash before definition */
 x-dialog:not(:defined),
 x-popover:not(:defined),

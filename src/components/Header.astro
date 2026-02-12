@@ -14,11 +14,7 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
 <header class="header">
   <div class="header__inner">
     <a class="header__brand" href="/" onclick="window.location.href = '/'; window.location.reload();">
-      {brand.includes("Resizing") ? (
-        <>
-          {brand.split("Resizing")[0]}<span class="brand-highlight">Resizing</span>{brand.split("Resizing")[1]}
-        </>
-      ) : brand}
+      {brand}
     </a>
 
     <div class="header__right">
@@ -39,6 +35,10 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
 </header>
 
 <style>
+  .header__brand {
+    font-weight: 400;
+  }
+
   .header__right {
     display: flex;
     align-items: center;
@@ -50,11 +50,5 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
   .header__nav {
     position: relative;
     z-index: 1;
-  }
-
-  :global(.brand-highlight) {
-    font-weight: 900;
-    font-size: 3em;
-    line-height: 1;
   }
 </style>

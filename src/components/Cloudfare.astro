@@ -1,17 +1,16 @@
 ---
 /**
  * Cloudflare Web Analytics
- * Usage: <CloudflareAnalytics token="YOUR_TOKEN" />
+ * Only renders when token is provided (e.g. via PUBLIC_CF_BEACON_TOKEN env var).
  */
 const { token } = Astro.props as { token: string };
-
-if (!token) {
-  throw new Error("CloudflareAnalytics: missing token prop");
-}
+const hasToken = Boolean(token && token !== "XXX");
 ---
 
-<script
-  defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon={JSON.stringify({ token })}
-/>
+{hasToken && (
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={JSON.stringify({ token })}
+  />
+)}

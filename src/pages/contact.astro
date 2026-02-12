@@ -9,29 +9,451 @@ const title = `Contact — ${site.name}`;
   title={title}
   description={`Contact ${site.name}`}
   canonicalPath="/contact"
-  mainCentered
+  bodyClass="page--contact"
+  showFooter={false}
 >
-  <article class="prose">
-    <h1>Contact</h1>
+  <section class="contact-form">
+    <div class="contact-form__layout">
+    <div class="contact-form__inner">
+      <form class="contact-form__form" id="contactForm">
+        <div class="contact-form__section">
+          <div class="contact-form__section-header">
+            <span class="contact-form__section-number">01</span>
+            <h2 class="contact-form__section-title">How can we help?</h2>
+          </div>
+          <div class="contact-form__section-fields">
+            <div class="contact-form__field">
+              <label for="reason" class="contact-form__label">Reason for enquiry</label>
+              <select id="reason" name="reason" class="contact-form__input contact-form__select" required>
+                <option value="">Select...</option>
+                <option value="Potential New Business">Potential New Business</option>
+                <option value="Quote">Quote</option>
+                <option value="Charity Project">Charity Project</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-    <p class="lead">
-      This site does not include a contact form by default.
-    </p>
+        <div class="contact-form__section">
+          <div class="contact-form__section-header">
+            <span class="contact-form__section-number">02</span>
+            <h2 class="contact-form__section-title">Tell us about yourself</h2>
+          </div>
+          <div class="contact-form__section-fields">
+            <div class="contact-form__field">
+              <label for="fullName" class="contact-form__label">Full name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                class="contact-form__input"
+                placeholder="John Doe"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="position" class="contact-form__label">Position</label>
+              <input
+                type="text"
+                id="position"
+                name="position"
+                class="contact-form__input"
+                placeholder="CEO"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="email" class="contact-form__label">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="contact-form__input"
+                placeholder="example@domain.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="website" class="contact-form__label">Website URL</label>
+              <input
+                type="url"
+                id="website"
+                name="website"
+                class="contact-form__input"
+                placeholder="https://your-website.com"
+                autocomplete="url"
+              />
+            </div>
+          </div>
+        </div>
 
-    <p>
-      If you need to get in touch, you can reach us by email:
-    </p>
+        <div class="contact-form__section">
+          <div class="contact-form__section-header">
+            <span class="contact-form__section-number">03</span>
+            <h2 class="contact-form__section-title">Tell us about your business</h2>
+          </div>
+          <div class="contact-form__section-fields">
+            <div class="contact-form__field">
+              <label for="businessName" class="contact-form__label">What is your business called?</label>
+              <input
+                type="text"
+                id="businessName"
+                name="businessName"
+                class="contact-form__input"
+                placeholder="Acme Corporation"
+                autocomplete="organization"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="whatDoYouDo" class="contact-form__label">What do you do</label>
+              <input
+                type="text"
+                id="whatDoYouDo"
+                name="whatDoYouDo"
+                class="contact-form__input"
+                placeholder="Make and sell products"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="location" class="contact-form__label">Where are you located?</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                class="contact-form__input"
+                placeholder="Alberta, Canada"
+                autocomplete="address-level2"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="operatingLength" class="contact-form__label">How long have you been operating?</label>
+              <select id="operatingLength" name="operatingLength" class="contact-form__input contact-form__select">
+                <option value="">Select...</option>
+                <option value="Start-Up">Start-Up</option>
+                <option value="1-2 years">1-2 years</option>
+                <option value="3-5 years">3-5 years</option>
+                <option value="5+ years">5+ years</option>
+                <option value="Established business">Established business</option>
+              </select>
+            </div>
+            <div class="contact-form__field">
+              <label for="budget" class="contact-form__label">What is the budget for your project?</label>
+              <input
+                type="text"
+                id="budget"
+                name="budget"
+                class="contact-form__input"
+                placeholder="e.g. $5k - $10k"
+              />
+            </div>
+          </div>
+        </div>
 
-    {site.author.email && (
-      <p>
-        <a href={`mailto:${site.author.email}`}>
-          {site.author.email}
-        </a>
-      </p>
-    )}
+        <div class="contact-form__section">
+          <div class="contact-form__section-header">
+            <span class="contact-form__section-number">04</span>
+            <h2 class="contact-form__section-title">Additional information</h2>
+          </div>
+          <div class="contact-form__section-fields">
+            <div class="contact-form__field">
+              <label for="message" class="contact-form__label">How can we help?</label>
+              <textarea
+                id="message"
+                name="message"
+                class="contact-form__input contact-form__textarea"
+                placeholder="Tell us about your project..."
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+        </div>
 
-    <p>
-      This keeps the baseline simple and avoids unnecessary JavaScript.
-    </p>
-  </article>
+        <div class="contact-form__row contact-form__row--submit">
+          <button type="button" class="contact-form__submit" id="contactFormSubmit">Send Message</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-form__links-wrapper">
+    <aside class="contact-form__links">
+      <p class="contact-form__links-title">Ready to start a new project, learn more about our services, or connect with our team? Reach out using the contact form or details below.</p>
+      <div class="contact-form__links-pills">
+        <a href="mailto:contact@resizing.ca" class="contact-form__link">Email</a>
+        <a href="https://www.linkedin.com/company/resizing/" target="_blank" rel="noopener noreferrer" class="contact-form__link">LinkedIn</a>
+        <a href="https://instagram.com/resizing" target="_blank" rel="noopener noreferrer" class="contact-form__link">Instagram</a>
+      </div>
+    </aside>
+    </div>
+    </div>
+  </section>
 </Base>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('contactFormSubmit');
+
+  if (form && submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      if (!form.reportValidity()) return;
+      const formData = new FormData(form);
+      const reason = formData.get('reason') || '';
+      const fullName = formData.get('fullName') || '';
+      const position = formData.get('position') || '';
+      const email = formData.get('email') || '';
+      const website = formData.get('website') || '';
+      const businessName = formData.get('businessName') || '';
+      const whatDoYouDo = formData.get('whatDoYouDo') || '';
+      const location = formData.get('location') || '';
+      const operatingLength = formData.get('operatingLength') || '';
+      const budget = formData.get('budget') || '';
+      const message = formData.get('message') || '';
+
+      const body = [
+        '01 How can we help?',
+        'Reason for enquiry: ' + reason,
+        '',
+        '02 Tell us about yourself',
+        'Full name: ' + fullName,
+        'Position: ' + position,
+        'Email address: ' + email,
+        'Website URL: ' + website,
+        '',
+        '03 Tell us about your business',
+        'Business: ' + businessName,
+        'What do you do: ' + whatDoYouDo,
+        'Location: ' + location,
+        'Operating: ' + operatingLength,
+        'Budget: ' + budget,
+        '',
+        '04 Additional information',
+        'How can we help?: ' + message
+      ].join('\n');
+
+      const subject = `Contact form submission from ${fullName}`.trim() || 'Contact form submission';
+      const mailto = `mailto:contact@resizing.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  }
+</script>
+
+<style>
+  :global(.page--contact .page__main) {
+    padding: 0;
+  }
+
+  :global(.page--contact.page) {
+    padding-bottom: 0;
+  }
+
+  .contact-form {
+    background-color: #f5f5f0;
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+  }
+
+  .contact-form__layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(360px, 460px);
+    gap: 48px 80px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .contact-form__inner {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .contact-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .contact-form__section {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 40px 48px;
+    align-items: start;
+  }
+
+  .contact-form__section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .contact-form__section-number {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(26, 26, 26, 0.5);
+  }
+
+  .contact-form__section-title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .contact-form__section-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-form__links-wrapper {
+    position: relative;
+  }
+
+  .contact-form__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    position: fixed;
+    top: 112px;
+    left: 60%;
+    transform: translateX(-50%);
+    right: auto;
+    width: min(460px, calc(100vw - 48px));
+    max-width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .contact-form__links-pills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .contact-form__links-title {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: rgba(26, 26, 26, 0.85);
+    line-height: 1.5;
+    margin: 0;
+    width: 100%;
+  }
+
+  .contact-form__link {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(26, 26, 26, 0.85);
+    text-decoration: none;
+    background: #eaeae4;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    display: inline-block;
+    width: fit-content;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .contact-form__link:hover {
+    background: #d4d4ce;
+    color: #1a1a1a;
+  }
+
+  .contact-form__row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-form__row--submit {
+    margin-top: 8px;
+    align-items: flex-start;
+  }
+
+  .contact-form__label {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(26, 26, 26, 0.85);
+  }
+
+  .contact-form__input {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    background: #eaeae4;
+    border: none;
+    border-radius: 5px;
+    color: #1a1a1a;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-form__input::placeholder,
+  .contact-form__textarea::placeholder {
+    color: #A9A9A9;
+  }
+
+  .contact-form__textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .contact-form__select {
+    cursor: pointer;
+  }
+
+  .contact-form__submit {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 14px 48px;
+    background: #38524B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .contact-form__submit:hover {
+    background: #2d423f;
+  }
+
+  @media (max-width: 768px) {
+    .contact-form__layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .contact-form__links {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      transform: none;
+      width: 100%;
+    }
+
+    .contact-form__links-pills {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contact-form__section {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .contact-form__section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+  }
+</style>

@@ -1,7 +1,10 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = () => {
-  const site = import.meta.env.SITE_URL;
+  let site = import.meta.env.SITE_URL ?? "https://resizing.ca";
+  if (!site.startsWith("http")) {
+    site = `https://${site}`;
+  }
   const body = `User-agent: *
 Allow: /
 

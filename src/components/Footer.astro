@@ -1,9 +1,12 @@
 ---
-import { site, type SiteConfig } from "../content/site";
+import { site, type SiteConfig, type SiteNavItem } from "../content/site";
 
 type Author = SiteConfig["author"];
 
-const { author = site.author } = Astro.props as { author?: Author };
+const { author = site.author, nav = site.nav } = Astro.props as {
+  author?: Author;
+  nav?: SiteNavItem[];
+};
 const year = new Date().getFullYear();
 ---
 
@@ -20,20 +23,19 @@ const year = new Date().getFullYear();
     <div class="footer__right">
       <div class="footer__col">
         <h4 class="footer__col-title">Navigation</h4>
-        <a href="/services">Services</a>
-        <a href="/studio">Studio</a>
-        <a href="/work">Work</a>
-        <a href="/contact">Contact</a>
+        {nav.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title">Socials</h4>
-        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/resizing" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/resizing/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title">Legal</h4>
         <a href="/legal">Privacy Policy</a>
-        <a href="/legal">Terms of Service</a>
+        <a href="/terms">Terms of Service</a>
       </div>
     </div>
   </div>

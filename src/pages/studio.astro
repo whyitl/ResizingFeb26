@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import ContactSection from "../components/ContactSection.astro";
 import { site } from "../content/site";
 
 const title = `Studio — ${site.name}`;
@@ -9,16 +10,151 @@ const title = `Studio — ${site.name}`;
   title={title}
   description={`About the ${site.name} studio`}
   canonicalPath="/studio"
+  bodyClass="page--studio"
+  showContactSection={false}
 >
-  <article class="prose">
+  <article class="prose studio-article">
     <h1>Studio</h1>
 
-    <p class="lead">
-      Learn more about our studio, our team, and our approach.
-    </p>
+    <div class="studio-layout">
+      <div class="studio-content">
+        <p class="lead">
+          Resizing is a web design studio for small and scaling businesses that want a professional online presence without the headache. Most of our clients aren't trying to become bloggers or spend weekends wrestling with WordPress — they just need a fast, reliable site that looks sharp, brings in leads, and gets out of the way so they can focus on actually running their business.
+        </p>
 
-    <p>
-      This is where you can share information about your studio, team members, and your creative process.
-    </p>
+        <p>
+          We build static HTML websites, which basically means your site is simpler, faster, and way less likely to break or get hacked. No clunky dashboards, no surprise updates at 2am, no plugins throwing tantrums. Just a clean site that works.
+        </p>
+
+        <p>
+          We've spent the past 1.5+ years designing and building websites for businesses across Calgary — from scrappy startups to companies expanding across the metro area. We get what local businesses need, and we don't overcomplicate it.
+        </p>
+      </div>
+
+      <div class="studio-right">
+        <aside class="studio-embed">
+          <iframe
+            data-testid="embed-iframe"
+            src="https://open.spotify.com/embed/playlist/1btppMytEHWdikp8llv2Wl?utm_source=generator&theme=0"
+            width="100%"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </aside>
+        <img src="/StudioLowPoly.webp" alt="Studio" class="studio-image" />
+      </div>
+      <div class="studio-contact">
+        <ContactSection />
+      </div>
+      <div class="studio-contact-spacer" aria-hidden="true"></div>
+    </div>
   </article>
 </Base>
+
+<style>
+  .studio-article h1 {
+    margin-bottom: var(--space-1);
+  }
+
+  .studio-layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(360px, 520px);
+    grid-template-rows: auto auto;
+    column-gap: 64px;
+    row-gap: 0;
+    align-items: stretch;
+  }
+
+  .studio-content {
+    min-width: 0;
+  }
+
+  .studio-content .lead,
+  .studio-content p {
+    margin-top: 0;
+    margin-bottom: var(--space-1);
+  }
+
+  .studio-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .studio-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 0;
+  }
+
+  .studio-embed {
+    position: relative;
+    min-height: 0;
+    flex: 1 1 0;
+  }
+
+  .studio-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
+
+  .studio-contact {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    margin-top: var(--space-2);
+  }
+
+  .studio-contact-spacer {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 1px;
+  }
+
+  .studio-article .studio-contact :global(.contact-section) {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: var(--space-2);
+    padding-left: 0;
+  }
+
+  .studio-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .studio-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: unset;
+      grid-auto-rows: auto;
+      gap: 12px;
+    }
+
+    .studio-right {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .studio-embed {
+      position: relative;
+      top: auto;
+      min-height: 200px;
+    }
+
+    .studio-contact {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .studio-contact-spacer {
+      display: none;
+    }
+  }
+</style>

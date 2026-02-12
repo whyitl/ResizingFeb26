@@ -30,8 +30,8 @@ const title = `Work — ${site.name}`;
             TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
           </p>
           <div class="work-images">
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
+            <img src="/TUCNHome.webp" alt="TUCN Media homepage" />
+            <img src="/TUCNReviews.webp" alt="TUCN Media reviews" />
           </div>
         </div>
       </details>
@@ -111,7 +111,7 @@ const title = `Work — ${site.name}`;
 
   .work-content {
     padding: 0 1.5rem 1.5rem;
-    border-top: 1px solid var(--border-green);
+    border-top: 1px solid var(--border);
   }
 
   .work-content p {
@@ -128,7 +128,8 @@ const title = `Work — ${site.name}`;
 
   .work-images img {
     width: 100%;
-    height: auto;
+    aspect-ratio: 16/10;
+    object-fit: cover;
     border-radius: 4px;
     border: 1px solid var(--color-border, #e5e5e5);
   }

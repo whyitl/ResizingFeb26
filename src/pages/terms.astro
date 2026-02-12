@@ -1,0 +1,75 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../content/site";
+
+const title = `Terms of Service — ${site.name}`;
+---
+
+<Base
+  title={title}
+  description={`Terms of service for ${site.name}`}
+  canonicalPath="/terms"
+  showContactSection={false}
+>
+  <article class="prose">
+    <h1>Terms of Service</h1>
+    <p><em>Effective Date: February 12, 2026</em></p>
+
+    <p>
+      Welcome to Resizing ("we," "our," or "us"). These Terms and Conditions govern your use of our website located at www.resizing.ca ("Website"). By accessing or using our Website, you agree to comply with and be bound by these terms. If you do not agree with these terms, please do not use our Website.
+    </p>
+
+    <h2>1. Use of the Website</h2>
+    <p>
+      You agree to use our Website only for lawful purposes and in a way that does not infringe on the rights of others or restrict their use and enjoyment of the Website. You must not misuse or interfere with our Website by introducing viruses, malware, or any harmful technology.
+    </p>
+
+    <h2>2. Intellectual Property</h2>
+    <p>
+      All content on this Website, including text, graphics, logos, and designs, is the property of Resizing or its content providers and is protected by intellectual property laws. You may not reproduce, distribute, or exploit any content from our Website without prior written consent from us.
+    </p>
+
+    <h2>3. User Accounts</h2>
+    <p>
+      Some areas of our Website may require you to create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate and up-to-date information when registering and using your account.
+    </p>
+
+    <h2>4. Services</h2>
+    <p>
+      Resizing offers design and development services. Our services and pricing details are outlined separately and subject to change. All services provided are subject to a separate agreement or contract.
+    </p>
+
+    <h2>5. Limitation of Liability</h2>
+    <p>
+      Resizing is not responsible for any direct, indirect, incidental, or consequential damages arising from your use of our Website or services. We make no warranties regarding the accuracy, reliability, or availability of the Website or any content.
+    </p>
+
+    <h2>6. Third-Party Links</h2>
+    <p>
+      Our Website may contain links to third-party websites that are not controlled by us. We are not responsible for the content or practices of these third-party sites.
+    </p>
+
+    <h2>7. Privacy Policy</h2>
+    <p>
+      Your use of our Website is also governed by our <a href="/legal">Privacy Policy</a>, which explains how we collect, use, and protect your personal data.
+    </p>
+
+    <h2>8. Changes to These Terms</h2>
+    <p>
+      We reserve the right to modify or update these Terms at any time. Any changes will be posted on this page with the updated effective date. Please review these Terms periodically.
+    </p>
+
+    <h2>9. Governing Law</h2>
+    <p>
+      These Terms and Conditions are governed by and construed in accordance with the laws of Alberta, Canada, without regard to its conflict of law principles.
+    </p>
+
+    <h2>10. Contact Us</h2>
+    <p>
+      If you have any questions or concerns about these Terms and Conditions, please contact us at:
+    </p>
+    <p>
+      Email: <a href="mailto:contact@resizing.ca">contact@resizing.ca</a>
+    </p>
+  </article>
+</Base>

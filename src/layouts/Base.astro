@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ContactSection from "../components/ContactSection.astro";
 import SkipLink from "../components/SkipLink.astro";
+import ImageLightbox from "../components/ImageLightbox.astro";
 import { site } from "../content/site";
 import Cloudfare from "../components/Cloudfare.astro";
 
@@ -19,13 +20,30 @@ const {
   mainCentered = false,
   showHeader = true,
   showFooter = true,
-  showContactSection = showFooter
+  showContactSection = showFooter,
+  bodyClass = ""
 } = Astro.props;
 const CF_TOKEN = import.meta.env.PUBLIC_CF_BEACON_TOKEN || "";
 const canonical = new URL(canonicalPath, site.url).toString();
 ---
 
 <!doctype html>
+<!--
+     ____            _     _             
+    |  _ \ ___  ___(_)___(_)_ __   __ _ 
+    | |_) / _ \/ __| |_  / | '_ \ / _` |
+    |  _ <  __/\__ \ |/ /| | | | | (_| |
+    |_| \_\___||___/_/___|_|_| |_|\__, |
+                                   |___/ 
+    
+    © Resizing 2025
+    Resizing.ca
+    
+    Simple websites for small businesses
+    
+    Developed by: Wyatt Lain & Resizing Studio
+    
+-->
 <html lang={site.locale}>
   <head>
     <meta charset="utf-8" />
@@ -43,7 +61,7 @@ const canonical = new URL(canonicalPath, site.url).toString();
     <Cloudfare token={CF_TOKEN} />
   </head>
 
-  <body class="page">
+  <body class={`page ${bodyClass}`.trim()}>
     <div class="page__content">
       <SkipLink />
       {showHeader && <Header />}
@@ -57,5 +75,6 @@ const canonical = new URL(canonicalPath, site.url).toString();
         <Footer />
       </div>
     )}
+    <ImageLightbox />
   </body>
 </html>

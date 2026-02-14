@@ -30,8 +30,9 @@ const title = `Work — ${site.name}`;
             TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
           </p>
           <div class="work-images">
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
+            <img class="lightbox-img" src="/TUCNHome.webp" alt="TUCN Media homepage" loading="lazy" />
+            <img class="lightbox-img" src="/TUCNServices.webp" alt="TUCN Media services" loading="lazy" />
+            <img class="lightbox-img" src="/TUCNreviews.webp" alt="TUCN Media reviews" loading="lazy" />
           </div>
         </div>
       </div>
@@ -48,8 +49,9 @@ const title = `Work — ${site.name}`;
             Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
           </p>
           <div class="work-images">
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Homepage" alt="Pure Glow Electric homepage" />
-            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Services" alt="Pure Glow Electric services" />
+            <img class="lightbox-img" src="/PureGlowHome.webp" alt="Pure Glow Electric homepage" loading="lazy" />
+            <img class="lightbox-img" src="/PureGlowServices.webp" alt="Pure Glow Electric services" loading="lazy" />
+            <img class="lightbox-img" src="/PureGlowFAQ.webp" alt="Pure Glow Electric FAQ" loading="lazy" />
           </div>
         </div>
       </div>
@@ -68,6 +70,14 @@ const title = `Work — ${site.name}`;
   @media (max-width: 768px) {
     .work-list {
       grid-template-columns: 1fr;
+    }
+    
+    .work-images {
+      flex-direction: column;
+    }
+    
+    .work-images img {
+      width: 100%;
     }
   }
 
@@ -124,16 +134,25 @@ const title = `Work — ${site.name}`;
   }
 
   .work-images {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column; /* stack images vertically so there's no horizontal scroll */
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
+    padding: 0;
+    overflow: visible;
+    box-sizing: border-box;
+    align-items: center;
   }
 
   .work-images img {
-    width: 100%;
+    display: block;
+    width: 90%; /* fill most of the card so images are visually larger */
+    max-width: 1200px;
     height: auto;
+    object-fit: contain; /* show whole image without cropping */
     border-radius: 4px;
     border: 1px solid var(--border);
+    margin: 0 auto;
   }
 </style>

@@ -38,6 +38,67 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
   </div>
 </header>
 
+<script>
+  // Handle smooth scrolling for anchor links (800ms for a gentler feel)
+  function smoothScrollTo(targetPosition, duration = 800) {
+    const start = window.pageYOffset;
+    const distance = targetPosition - start;
+    const startTime = performance.now();
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      window.scrollTo(0, start + distance * ease);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || !href.includes('#')) return;
+        
+        // Check if it's an anchor link (e.g., /#work or #work)
+        const [path, hash] = href.split('#');
+        if (!hash) return;
+        
+        // Normalize paths for comparison (remove trailing slashes)
+        const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        const targetPath = (path || '/').replace(/\/$/, '') || '/';
+        
+        // If we're on the target page (or staying on current page), scroll smoothly
+        if (currentPath === targetPath || href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.getElementById(hash);
+          if (target) {
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            smoothScrollTo(targetPosition);
+            // Update URL without triggering navigation
+            history.pushState(null, '', href);
+          }
+        }
+        // If we're on a different page, let the browser navigate normally
+      });
+    });
+    
+    // Handle hash on page load (when navigating from another page)
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      const target = document.getElementById(hash);
+      if (target) {
+        // Small delay to ensure page is fully loaded
+        setTimeout(() => {
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          smoothScrollTo(targetPosition);
+        }, 100);
+      }
+    }
+  });
+</script>
+
 <style>
   .header__right {
     display: flex;

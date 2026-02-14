@@ -18,6 +18,7 @@ export type SiteConfig = {
       x?: string;
       github?: string;
       linkedin?: string;
+      instagram?: string;
     };
   };
   nav: SiteNavItem[];
@@ -36,18 +37,17 @@ export const site: SiteConfig = {
   url: import.meta.env.SITE_URL ?? "https://example.com",
   locale: "en",
   author: {
-    name: "Your Name",
-    email: "hello@example.com",
-    url: "https://example.com",
+    name: "Resizing",
+    email: "contact@resizing.ca",
+    url: "https://resizing.ca",
     socials: {
-      x: "https://x.com/yourhandle",
-      github: "https://github.com/yourhandle",
-      linkedin: "https://www.linkedin.com/in/yourhandle/"
+      linkedin: "https://www.linkedin.com/company/resizing/",
+      instagram: "https://instagram.com/resizing"
     }
   },
   nav: [
     { label: "Studio", href: "/studio" },
-    { label: "Work", href: "/work" },
+    { label: "Work", href: "/#work" },
     { label: "Contact", href: "/contact" }
   ],
   seo: {

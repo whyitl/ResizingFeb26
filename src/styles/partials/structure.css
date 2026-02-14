@@ -6,6 +6,7 @@
   min-height: 100vh;
   height: auto;
   padding-bottom: 400px;
+  overflow-x: hidden;
 }
 
 .reveal-footer {
@@ -16,6 +17,13 @@
   z-index: 1;
 }
 
+/* On mobile, flow footer in document so full footer is visible (avoids overlap/cutoff) */
+@media (max-width: 768px) {
+  .reveal-footer {
+    position: relative;
+  }
+}
+
 .page__content{
   position: relative;
   z-index: 2;
@@ -24,6 +32,8 @@
   flex-direction: column;
   min-height: 100vh;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 -4px 12px rgba(0, 0, 0, 0.15);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .page__main{

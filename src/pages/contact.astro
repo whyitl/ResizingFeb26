@@ -172,7 +172,7 @@ const title = `Contact — ${site.name}`;
         </div>
 
         <div class="contact-form__row contact-form__row--submit">
-          <button type="button" class="contact-form__submit" id="contactFormSubmit">Send Message</button>
+          <button type="submit" class="contact-form__submit" id="contactFormSubmit">Send Message</button>
         </div>
       </form>
     </div>
@@ -193,10 +193,10 @@ const title = `Contact — ${site.name}`;
 
 <script>
   const form = document.getElementById('contactForm');
-  const submitBtn = document.getElementById('contactFormSubmit');
 
-  if (form && submitBtn) {
-    submitBtn.addEventListener('click', () => {
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
       if (!form.reportValidity()) return;
       const formData = new FormData(form);
       const reason = formData.get('reason') || '';

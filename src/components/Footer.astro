@@ -21,13 +21,13 @@ const year = new Date().getFullYear();
       <div class="footer__col">
         <h4 class="footer__col-title">Navigation</h4>
         <a href="/studio">Studio</a>
-        <a href="/work">Work</a>
+        <a href="/#work">Work</a>
         <a href="/contact">Contact</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title">Socials</h4>
-        <a href="https://instagram.com/resizing" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://linkedin.com/company/resizing" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://instagram.com/resizing" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://linkedin.com/company/resizing" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
       <div class="footer__col">
         <h4 class="footer__col-title">Legal</h4>
@@ -194,4 +194,49 @@ const year = new Date().getFullYear();
   
   updateCalgaryTime();
   setInterval(updateCalgaryTime, 1000);
+
+  // Handle smooth scrolling for anchor links in footer navigation (800ms for a gentler feel)
+  function smoothScrollTo(targetPosition, duration = 800) {
+    const start = window.pageYOffset;
+    const distance = targetPosition - start;
+    const startTime = performance.now();
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      window.scrollTo(0, start + distance * ease);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const footerLinks = document.querySelectorAll('.footer__col a[href*="#"]');
+    
+    footerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Check if it's an anchor link (e.g., /#work)
+        const [path, hash] = href.split('#');
+        if (!hash) return;
+        
+        // Check if we're navigating to the current page or homepage
+        const currentPath = window.location.pathname;
+        const targetPath = path || '/';
+        
+        if (currentPath === targetPath) {
+          // We're already on the target page, just scroll
+          e.preventDefault();
+          const target = document.getElementById(hash);
+          if (target) {
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            smoothScrollTo(targetPosition);
+          }
+        }
+        // If we're on a different page, let the browser navigate normally
+        // and the anchor will be handled by the browser
+      });
+    });
+  });
 </script>

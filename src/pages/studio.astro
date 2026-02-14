@@ -19,32 +19,71 @@ const title = `Studio — ${site.name}`;
     <div class="studio-layout">
       <div class="studio-content">
         <p class="lead">
-          Resizing is a web design studio for small and scaling businesses that want a professional online presence without the headache. Most of our clients aren't trying to become bloggers or spend weekends wrestling with WordPress — they just need a fast, reliable site that looks sharp, brings in leads, and gets out of the way so they can focus on actually running their business.
+          
         </p>
 
+        <h2>What We Do</h2>
         <p>
-          We build static HTML websites, which basically means your site is simpler, faster, and way less likely to break or get hacked. No clunky dashboards, no surprise updates at 2am, no plugins throwing tantrums. Just a clean site that works.
+          We specialize in clean, professional websites for businesses that want to focus on their work, not their site. Static HTML means no clunky dashboards, no surprise plugin updates, and no security vulnerabilities—just reliable sites that load quickly and convert visitors into leads.
         </p>
 
+        <h2>Who We Work With</h2>
         <p>
-          We've spent the past 1.5+ years designing and building websites for businesses across Calgary — from scrappy startups to companies expanding across the metro area. We get what local businesses need, and we don't overcomplicate it.
+          Over the past year, we've partnered with Calgary businesses ranging from scrappy startups to expanding companies across the metro area. Our clients aren't trying to become bloggers or spend weekends tinkering with their site, they need a professional online presence that gets out of the way so they can run their business.
+        </p>
+
+        <h2>Our Approach</h2>
+        <p>
+          We don't overcomplicate things. Every project starts with understanding what you actually need, not what's trendy or technically impressive. The result? Sites that look sharp, perform well, and require virtually zero ongoing maintenance.
         </p>
       </div>
 
       <div class="studio-right">
-        <aside class="studio-embed">
-          <iframe
-            data-testid="embed-iframe"
-            src="https://open.spotify.com/embed/playlist/1btppMytEHWdikp8llv2Wl?utm_source=generator&theme=0"
-            width="100%"
-            frameborder="0"
-            allowfullscreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </aside>
-        <img src="/StudioLowPoly.webp" alt="Studio" class="studio-image" />
+        <img src="/StudioLowPoly.webp" alt="Studio" class="studio-image" loading="lazy" />
+        <div class="studio-stats">
+          <h3>Stats:</h3>
+          <ul>
+            <li>Monsters consumed: at least 10,000</li>
+            <li>All-nighters: too many</li>
+            <li>Websites launched: 5 in first 6 months</li>
+            <li>Google searches for "why isn't this working?": Classified</li>
+            <li>Brand identities rescued from "free logo designer aesthetic": 2</li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="studio-boxes">
+      <div class="studio-box">
+        <h3>Studio</h3>
+        <p class="studio-box-text">
+          Resizing started out of recognizing a gap in accessible, professional web design for small businesses. We build fast, reliable sites using modern web standards—without the complexity. Based in Calgary, Alberta, Canada.
+        </p>
+      </div>
+      <div class="studio-box">
+        <h3>Services</h3>
+        <ul class="studio-box-list">
+          <li>UX/UI design</li>
+          <li>Frontend development</li>
+          <li>Hosting & Maintenance</li>
+          <li>Branding</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="studio-embed-section">
+      <h2>Listen to the studio mix.</h2>
+      <aside class="studio-embed">
+        <iframe
+          data-testid="embed-iframe"
+          src="https://open.spotify.com/embed/playlist/1btppMytEHWdikp8llv2Wl?utm_source=generator&theme=0"
+          width="100%"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </aside>
     </div>
   </article>
   <div class="studio-contact-wrapper">
@@ -54,7 +93,9 @@ const title = `Studio — ${site.name}`;
 
 <style>
   .studio-article h1 {
+    margin-top: var(--space-5);
     margin-bottom: var(--space-1);
+    font-size: 3em;
   }
 
   .studio-layout {
@@ -74,6 +115,7 @@ const title = `Studio — ${site.name}`;
   .studio-content p {
     margin-top: 0;
     margin-bottom: var(--space-1);
+    color: #666666;
   }
 
   .studio-content p:last-child {
@@ -83,14 +125,101 @@ const title = `Studio — ${site.name}`;
   .studio-right {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 16px;
     min-height: 0;
+  }
+
+  .studio-stats {
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 12px;
+  }
+
+  .studio-stats h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .studio-stats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666666;
+  }
+
+  .studio-stats li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .studio-stats li:last-child {
+    margin-bottom: 0;
+  }
+
+  .studio-boxes {
+    display: flex;
+    gap: 24px;
+    margin-top: 120px;
+    margin-bottom: 120px;
+  }
+
+  .studio-box {
+    flex: 1;
+    padding: 16px;
+    border-radius: 16px;
+    background: #f9f9f9;
+    min-height: 180px;
+    height: auto;
+    max-width: 320px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .studio-box h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .studio-box-text {
+    margin: 16px 0 0 0;
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.5;
+  }
+
+  .studio-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+    font-size: 0.95rem;
+    color: #666666;
+  }
+
+  .studio-box-list li {
+    margin-bottom: 8px;
+  }
+
+  .studio-box-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .studio-embed-section {
+    margin-top: 48px;
+  }
+
+  .studio-embed-section h2 {
+    margin-bottom: 48px;
+    font-size: 3em;
   }
 
   .studio-embed {
     position: relative;
-    min-height: 0;
-    flex: 1 1 0;
+    width: 60%;
+    height: 380px;
   }
 
   .studio-embed iframe {
@@ -113,6 +242,11 @@ const title = `Studio — ${site.name}`;
   }
 
   @media (max-width: 768px) {
+    .studio-article {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
     .studio-layout {
       grid-template-columns: 1fr;
       grid-template-rows: unset;
@@ -125,10 +259,26 @@ const title = `Studio — ${site.name}`;
       gap: 8px;
     }
 
+    .studio-boxes {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .studio-box {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 320px;
+      text-align: left;
+    }
+
     .studio-embed {
-      position: relative;
-      top: auto;
-      min-height: 200px;
+      width: 100%;
+      height: 300px;
+    }
+
+    .studio-contact-wrapper {
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 </style>

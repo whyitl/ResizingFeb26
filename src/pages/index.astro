@@ -104,9 +104,10 @@ const jsonLd = {
                   <p class="details-description">
                     TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
                   </p>
-                  <div class="details-images">
-                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
-                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
+                  <div class="details-images" style="--images: 3;">
+                    <img class="lightbox-img" src="/TUCNHome.webp" alt="TUCN Media homepage" loading="lazy" />
+                    <img class="lightbox-img" src="/TUCNServices.webp" alt="TUCN Media services" loading="lazy" />
+                    <img class="lightbox-img" src="/TUCNreviews.webp" alt="TUCN Media reviews" loading="lazy" />
                   </div>
                   <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" class="visit-site-btn">
                     Visit Site →
@@ -126,9 +127,10 @@ const jsonLd = {
                   <p class="details-description">
                     Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
                   </p>
-                  <div class="details-images">
-                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Homepage" alt="Pure Glow Electric homepage" />
-                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Services" alt="Pure Glow Electric services" />
+                  <div class="details-images" style="--images: 3;">
+                    <img class="lightbox-img" src="/PureGlowHome.webp" alt="Pure Glow Electric homepage" loading="lazy" />
+                    <img class="lightbox-img" src="/PureGlowServices.webp" alt="Pure Glow Electric services" loading="lazy" />
+                    <img class="lightbox-img" src="/PureGlowFAQ.webp" alt="Pure Glow Electric FAQ" loading="lazy" />
                   </div>
                   <a href="https://pureglowelectric.com" target="_blank" rel="noopener noreferrer" class="visit-site-btn">
                     Visit Site →
@@ -150,7 +152,7 @@ const jsonLd = {
             <a href="/studio" class="studio-link">More about us →</a>
           </div>
           <div class="studio-right">
-            <img src="/photodump.gif" alt="Studio photo dump" class="studio-gif" />
+            <img src="/photodump.gif" alt="Studio photo dump" class="studio-gif" loading="lazy" />
           </div>
         </div>
       </section>
@@ -158,7 +160,7 @@ const jsonLd = {
       <!-- Vertical Navigation on the right -->
       <nav class="vertical-nav">
         <a href="/studio" class="nav-item">Studio</a>
-        <a href="/work" class="nav-item">Work</a>
+        <a href="#work" class="nav-item">Work</a>
         <a href="/contact" class="nav-item">Contact</a>
         <CursorSwitcher />
       </nav>
@@ -182,6 +184,8 @@ const jsonLd = {
     position: relative;
     min-height: 100vh;
     padding: 10px;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   /* Sticky wrapper: pins all content while the spacer scrolls behind.
@@ -191,12 +195,14 @@ const jsonLd = {
     position: sticky;
     top: 10px;
     z-index: 1;
+    overflow-x: visible;
+    max-width: 100%;
   }
 
   /* Creates extra scroll height so the page can "scroll"
      while content stays pinned (matches LOGO_SHRINK_RANGE in JS) */
   .scroll-pin-spacer {
-    height: 400px;
+    height: 200px;
     pointer-events: none;
   }
 
@@ -252,7 +258,7 @@ const jsonLd = {
   }
 
   .logo-text {
-    font-size: 100px;
+    font-size: 115px;
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1;
@@ -329,16 +335,18 @@ const jsonLd = {
     margin: 0;
     padding: 0 0 0 0;
     padding-right: 240px; /* Space for fixed nav */
+    min-width: 0; /* Allow grid to shrink below content size */
   }
 
   .content-left {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    min-width: 0; /* Allow shrinking to prevent overflow */
   }
 
   .text-content {
-    max-width: 400px;
+    max-width: min(400px, 100%);
     font-size: 72px; /* match logo-text size so children can use em units relative to it */
     display: flex;
     flex-direction: column;
@@ -389,7 +397,7 @@ const jsonLd = {
 
   .hero-divider {
     border: none;
-    border-top: 1px solid var(--border-green);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin: 96px 0 0 0;
     width: 100vw;
     position: relative;
@@ -470,7 +478,8 @@ const jsonLd = {
     min-height: 100vh;
     box-sizing: border-box;
     will-change: transform;
-    overflow: visible;
+    overflow-x: clip;
+    overflow-y: visible;
   }
 
   /* Cards Section */
@@ -493,7 +502,7 @@ const jsonLd = {
 
   .cards-section-title {
     grid-column: 1 / -1;
-    font-size: 24px;
+    font-size: 31px;
     font-weight: 700;
     color: #000;
     margin: 0 0 10px 0;
@@ -544,8 +553,7 @@ const jsonLd = {
   /* The Studio Section */
   .studio-section {
     margin-top: 80px;
-    padding: 60px 0;
-    border-top: 1px solid var(--border-green);
+    padding: 40px 0 16px;
   }
 
   .studio-inner {
@@ -615,7 +623,10 @@ const jsonLd = {
   /* Showcased Work Section */
   .showcased-work-section {
     margin-top: 80px;
-    padding: 40px 0 80px 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    width: calc(100% + 20px);
+    padding: 24px 0 60px 0;
     animation: fadeInUp 0.8s ease-out 1.7s forwards;
     opacity: 0;
   }
@@ -626,13 +637,14 @@ const jsonLd = {
     letter-spacing: -0.02em;
     line-height: 1.2;
     color: #000;
-    margin: 0 0 40px 0;
+    margin: 0 0 24px 0;
   }
 
   .work-table {
     display: flex;
     flex-direction: column;
     gap: 0;
+    padding: 0 10px;
   }
 
   .table-header,
@@ -641,11 +653,11 @@ const jsonLd = {
     grid-template-columns: 100px 1fr 1fr 1fr;
     gap: 32px;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .table-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 6px 0 8px 0;
   }
 
@@ -659,7 +671,7 @@ const jsonLd = {
 
   .table-row {
     list-style: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .row-summary {
@@ -684,8 +696,7 @@ const jsonLd = {
   }
 
   .table-row.is-open .row-summary {
-    background: rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .col-year,
@@ -707,7 +718,8 @@ const jsonLd = {
   }
 
   .row-details {
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: hidden;
     max-height: 0;
     opacity: 0;
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -716,30 +728,46 @@ const jsonLd = {
 
   .table-row.is-open .row-details {
     opacity: 1;
+    overflow-x: clip;
   }
 
   .details-content {
-    max-width: 900px;
-    padding: 24px 0;
+    max-width: 1600px;
+    padding: 12px 0;
+    position: relative;
   }
 
   .details-description {
     font-size: 15px;
     line-height: 1.7;
     color: #333;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
   }
 
   .details-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row; /* side-by-side on wide screens */
+    gap: 12px;
+    margin-bottom: 12px;
+    margin-left: -10px;
+    margin-right: -10px;
+    width: calc(100% + 20px);
+    max-width: none;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: center;
+    --images: 1; /* fallback */
+    height: auto;
   }
 
   .details-images img {
-    width: 100%;
+    display: block;
     height: auto;
+    width: auto;
+    max-width: calc((100% - (var(--images) - 1) * 12px) / var(--images));
+    object-fit: contain;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.08);
   }
@@ -851,6 +879,7 @@ const jsonLd = {
 
     .content-layout {
       padding: 0;
+      max-width: 100%;
     }
 
     .vertical-nav {
@@ -860,8 +889,14 @@ const jsonLd = {
     }
 
     .text-content {
-      font-size: 56px;
+      font-size: 48px;
+      max-width: 100%;
     }
+
+    .logo-text {
+      font-size: 96px;
+    }
+
 
     .description {
       margin-bottom: 0;
@@ -874,21 +909,38 @@ const jsonLd = {
 
     .showcased-work-section {
       margin-top: 60px;
+      margin-left: -10px;
+      margin-right: -10px;
+      width: calc(100% + 20px);
+      padding: 16px 0 40px;
     }
 
     .showcased-title {
       font-size: 28px;
-      margin-bottom: 32px;
+      margin-bottom: 12px;
+      padding: 0 10px;
     }
 
     .table-header {
       display: none;
     }
 
+    .work-table {
+      padding: 0;
+    }
+
     .row-summary {
       grid-template-columns: 1fr;
-      gap: 8px;
-      padding: 20px 0;
+      gap: 4px;
+      padding: 12px 10px;
+    }
+
+    .details-content {
+      padding: 8px 10px 12px;
+    }
+
+    .details-description {
+      margin-bottom: 8px;
     }
 
     .col-year,
@@ -900,11 +952,24 @@ const jsonLd = {
 
     .col-client {
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 0;
     }
 
     .details-images {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      gap: 8px;
+      margin-bottom: 8px;
+      height: auto; /* stacked — let images size individually */
+    }
+    .details-images img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      min-width: 0;
     }
   }
 </style>
@@ -930,7 +995,7 @@ const jsonLd = {
 
     // ── Logo shrink configuration ──
     const LOGO_SHRINK_START = 0;     // begin shrinking immediately
-    const LOGO_SHRINK_RANGE = 400;   // scroll px over which logo shrinks (slower)
+    const LOGO_SHRINK_RANGE = 200;   // scroll px over which logo shrinks (matches scroll-pin-spacer)
     const MIN_SCALE = 0.32;          // minimum scale (~25px from 78px)
 
     // ── Nav fade configuration (delayed until logo shrink completes) ──
@@ -1107,4 +1172,36 @@ const jsonLd = {
       video.play();
     }
   }, 2000);
+
+  // Smooth scroll for vertical nav anchor links (800ms for a gentler feel)
+  function smoothScrollTo(targetPosition, duration = 800) {
+    const start = window.pageYOffset;
+    const distance = targetPosition - start;
+    const startTime = performance.now();
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      window.scrollTo(0, start + distance * ease);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll('.vertical-nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      
+      const targetId = href.substring(1);
+      const target = document.getElementById(targetId);
+      
+      if (target) {
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        smoothScrollTo(targetPosition);
+        // Update URL without triggering navigation
+        history.pushState(null, '', href);
+      }
+    });
+  });
 </script>

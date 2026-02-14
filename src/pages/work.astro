@@ -18,31 +18,31 @@ const title = `Work — ${site.name}`;
     </p>
 
     <div class="work-list">
-      <details class="work-item">
-        <summary>
+      <div class="work-item">
+        <div class="work-header">
           <h3>TUCN Media</h3>
-          <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+          <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" class="work-link">
             Visit Site →
           </a>
-        </summary>
+        </div>
         <div class="work-content">
           <p>
             TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
           </p>
           <div class="work-images">
-            <img src="/TUCNHome.webp" alt="TUCN Media homepage" />
-            <img src="/TUCNReviews.webp" alt="TUCN Media reviews" />
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
+            <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
           </div>
         </div>
-      </details>
+      </div>
 
-      <details class="work-item">
-        <summary>
+      <div class="work-item">
+        <div class="work-header">
           <h3>Pure Glow Electric</h3>
-          <a href="https://pureglowelectric.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+          <a href="https://pureglowelectric.com" target="_blank" rel="noopener noreferrer" class="work-link">
             Visit Site →
           </a>
-        </summary>
+        </div>
         <div class="work-content">
           <p>
             Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
@@ -52,7 +52,7 @@ const title = `Work — ${site.name}`;
             <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=Pure+Glow+Electric+Services" alt="Pure Glow Electric services" />
           </div>
         </div>
-      </details>
+      </div>
     </div>
   </article>
 </Base>
@@ -60,39 +60,43 @@ const title = `Work — ${site.name}`;
 <style>
   .work-list {
     margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .work-list {
+      grid-template-columns: 1fr;
+    }
   }
 
   .work-item {
-    border: 1px solid var(--color-border, #e5e5e5);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem;
     transition: all 0.2s ease;
   }
 
   .work-item:hover {
-    border-color: var(--color-text, #1a1a1a);
+    border-color: var(--link);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  .work-item summary {
-    cursor: pointer;
-    padding: 1.5rem;
-    list-style: none;
+  .work-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .work-item summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .work-item summary h3 {
+  .work-header h3 {
     margin: 0;
     font-size: 1.5rem;
   }
 
-  .work-item summary a {
+  .work-link {
     font-size: 0.9rem;
     white-space: nowrap;
     text-decoration: none;
@@ -103,34 +107,33 @@ const title = `Work — ${site.name}`;
     transition: all 0.2s ease;
   }
 
-  .work-item summary a:hover {
+  .work-link:hover {
     background: var(--link);
-    color: var(--color-bg, #ffffff);
+    color: white;
     border-color: var(--link);
   }
 
   .work-content {
-    padding: 0 1.5rem 1.5rem;
     border-top: 1px solid var(--border);
+    padding-top: 1rem;
   }
 
   .work-content p {
-    margin-top: 1rem;
+    margin-top: 0;
     line-height: 1.6;
   }
 
   .work-images {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin-top: 1.5rem;
   }
 
   .work-images img {
     width: 100%;
-    aspect-ratio: 16/10;
-    object-fit: cover;
+    height: auto;
     border-radius: 4px;
-    border: 1px solid var(--color-border, #e5e5e5);
+    border: 1px solid var(--border);
   }
 </style>

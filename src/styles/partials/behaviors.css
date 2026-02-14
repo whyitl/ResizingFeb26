@@ -1,6 +1,7 @@
 /* Smooth scroll for anchor links */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 200px;
 }
 
 /* Web Components: prevent flash before definition */

@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import ContactSection from "../components/ContactSection.astro";
 import SkipLink from "../components/SkipLink.astro";
 import { site } from "../content/site";
+import Cloudfare from "../components/Cloudfare.astro";
 
 import "../styles/global.css";
 
@@ -18,9 +19,9 @@ const {
   mainCentered = false,
   showHeader = true,
   showFooter = true,
-  showContactSection = true,
-  bodyClass = ""
+  showContactSection = showFooter
 } = Astro.props;
+const CF_TOKEN = import.meta.env.PUBLIC_CF_BEACON_TOKEN || "";
 const canonical = new URL(canonicalPath, site.url).toString();
 ---
 
@@ -39,16 +40,17 @@ const canonical = new URL(canonicalPath, site.url).toString();
       robots={robots}
       jsonLd={jsonLd}
     />
+    <Cloudfare token={CF_TOKEN} />
   </head>
 
-  <body class={`page ${bodyClass}`.trim()}>
+  <body class="page">
     <div class="page__content">
       <SkipLink />
       {showHeader && <Header />}
       <main id="main" class={`page__main ${mainCentered ? "page__main--centered" : ""}`}>
         <slot />
       </main>
-      {showFooter && showContactSection && <ContactSection />}
+      {showContactSection && <ContactSection />}
     </div>
     {showFooter && (
       <div class="reveal-footer">

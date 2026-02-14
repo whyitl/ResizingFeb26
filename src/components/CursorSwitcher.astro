@@ -189,7 +189,9 @@
     let particleCtx: CanvasRenderingContext2D | null = null;
 
     // ── State ──
-    let activeCursor = localStorage.getItem('cursor-style') || 'default';
+    const ALLOWED_CURSORS = ['default', 'circle-dot', 'crosshair', 'spotlight', 'particle', 'retro'];
+    const savedCursor = localStorage.getItem('cursor-style');
+    let activeCursor = (savedCursor && ALLOWED_CURSORS.includes(savedCursor)) ? savedCursor : 'default';
     let particles: { x: number; y: number; alpha: number; size: number }[] = [];
     let animFrameId: number | null = null;
     let mouseX = 0;
@@ -318,7 +320,10 @@
       });
 
       activeCursor = cursorId;
-      localStorage.setItem('cursor-style', cursorId);
+      // Only store if it's a valid cursor type
+      if (ALLOWED_CURSORS.includes(cursorId)) {
+        localStorage.setItem('cursor-style', cursorId);
+      }
     }
 
     // ── Mouse tracking ──

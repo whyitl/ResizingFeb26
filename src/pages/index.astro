@@ -62,7 +62,7 @@ const jsonLd = {
         </section>
       </div>
 
-      <section id="how-we-help" class="cards-section">
+      <section id="services" class="cards-section">
         <h2 class="cards-section-title">How We Help</h2>
         <div class="card">
           <span class="card-number">01</span>
@@ -82,7 +82,7 @@ const jsonLd = {
         </div>
       </section>
 
-      <section id="showcased-work" class="showcased-work-section">
+      <section id="work" class="showcased-work-section">
         <h2 class="showcased-title">Showcased Work</h2>
         <div class="work-table">
           <div class="table-header">
@@ -105,8 +105,8 @@ const jsonLd = {
                     TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
                   </p>
                   <div class="details-images">
-                    <img src="/TUCNHome.webp" alt="TUCN Media homepage" />
-                    <img src="/TUCNReviews.webp" alt="TUCN Media reviews" />
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Homepage" alt="TUCN Media homepage" />
+                    <img src="https://placehold.co/800x500/1a1a1a/ffffff?text=TUCN+Media+Portfolio" alt="TUCN Media portfolio" />
                   </div>
                   <a href="https://tucnmedia.com" target="_blank" rel="noopener noreferrer" class="visit-site-btn">
                     Visit Site →
@@ -157,9 +157,8 @@ const jsonLd = {
 
       <!-- Vertical Navigation on the right -->
       <nav class="vertical-nav">
-        <a href="/#how-we-help" class="nav-item">Services</a>
         <a href="/studio" class="nav-item">Studio</a>
-        <a href="/#showcased-work" class="nav-item">Work</a>
+        <a href="/work" class="nav-item">Work</a>
         <a href="/contact" class="nav-item">Contact</a>
         <CursorSwitcher />
       </nav>
@@ -390,7 +389,7 @@ const jsonLd = {
 
   .hero-divider {
     border: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-green);
     margin: 96px 0 0 0;
     width: 100vw;
     position: relative;
@@ -546,7 +545,7 @@ const jsonLd = {
   .studio-section {
     margin-top: 80px;
     padding: 60px 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-green);
   }
 
   .studio-inner {
@@ -602,7 +601,7 @@ const jsonLd = {
   .studio-right {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .studio-gif {
@@ -740,8 +739,7 @@ const jsonLd = {
 
   .details-images img {
     width: 100%;
-    aspect-ratio: 16/10;
-    object-fit: cover;
+    height: auto;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.08);
   }
@@ -1033,30 +1031,6 @@ const jsonLd = {
   }
 
   initScrollEffects();
-
-  // ── Services link: scroll to How We Help (matches vertical nav + footer) ──
-  document.querySelectorAll('a[href*="how-we-help"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const el = document.getElementById('how-we-help');
-      if (el) {
-const top = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: top + 40, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // ── Work link: scroll to Showcased Work (matches vertical nav + footer) ──
-  document.querySelectorAll('a[href*="showcased-work"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const el = document.getElementById('showcased-work');
-      if (el) {
-const top = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: top + 40, behavior: 'smooth' });
-      }
-    });
-  });
 
   // ── Work accordion ──
   function initWorkAccordion() {

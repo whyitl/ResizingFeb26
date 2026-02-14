@@ -29,33 +29,30 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Resizing Studio",
-  tagline: "Websites for small businesses that actually make sense.",
+  name: "Resizing",
+  tagline: "A boring, production-ready Astro starter.",
   description:
-    "Calgary-based web design studio building fast, affordable, low-maintenance websites for small businesses. Static HTML sites that load instantly, rank well, and don't break.",
-  url: (() => {
-    const url = import.meta.env.SITE_URL ?? "https://resizing.ca";
-    return url.startsWith("http") ? url : `https://${url}`;
-  })(),
+    "Resizing is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
+  url: import.meta.env.SITE_URL ?? "https://example.com",
   locale: "en",
   author: {
-    name: "Resizing Studio",
-    email: "contact@resizing.ca",
-    url: "https://resizing.ca",
+    name: "Your Name",
+    email: "hello@example.com",
+    url: "https://example.com",
     socials: {
-      github: "https://github.com/resizingstudio",
-      linkedin: "https://linkedin.com/company/resizing"
+      x: "https://x.com/yourhandle",
+      github: "https://github.com/yourhandle",
+      linkedin: "https://www.linkedin.com/in/yourhandle/"
     }
   },
   nav: [
-    { label: "Services", href: "/#how-we-help" },
     { label: "Studio", href: "/studio" },
-    { label: "Work", href: "/#showcased-work" },
+    { label: "Work", href: "/work" },
     { label: "Contact", href: "/contact" }
   ],
   seo: {
     ogImage: "/images/og/og-default.jpg",
     robots: "index,follow",
-    themeColor: "rgb(59, 82, 73)"
+    themeColor: "#fbfbf9"
   }
 };

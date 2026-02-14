@@ -1,10 +1,11 @@
 ---
 /**
  * Cloudflare Web Analytics
- * Only renders when token is provided (e.g. via PUBLIC_CF_BEACON_TOKEN env var).
+ * Only renders when token is provided via PUBLIC_CF_BEACON_TOKEN env var.
+ * Set PUBLIC_CF_BEACON_TOKEN in your .env file.
  */
 const { token } = Astro.props as { token: string };
-const hasToken = Boolean(token && token !== "XXX");
+const hasToken = Boolean(token && token.length > 0);
 ---
 
 {hasToken && (

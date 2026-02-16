@@ -433,12 +433,17 @@
       });
     });
 
-    // ── Initialise ──
-    createOverlayElements();
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('resize', resizeParticleCanvas);
-
-    // Apply saved cursor on load
-    applyCursor(activeCursor);
+    // ── Initialise (deferred to reduce main-thread work) ──
+    function init() {
+      createOverlayElements();
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('resize', resizeParticleCanvas);
+      applyCursor(activeCursor);
+    }
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(init, { timeout: 2000 });
+    } else {
+      setTimeout(init, 0);
+    }
   })();
 </script>

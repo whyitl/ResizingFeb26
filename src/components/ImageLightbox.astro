@@ -114,7 +114,7 @@
       img.addEventListener('click', (e) => {
         e.preventDefault();
         const target = e.currentTarget;
-        open(target.src, target.alt || 'Enlarged image');
+        open((target as HTMLImageElement).currentSrc || target.src, target.alt || 'Enlarged image');
       });
     });
 
@@ -126,5 +126,9 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initImageLightbox);
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(initImageLightbox, { timeout: 500 });
+  } else {
+    setTimeout(initImageLightbox, 0);
+  }
 </script>

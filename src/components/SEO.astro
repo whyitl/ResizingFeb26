@@ -64,6 +64,8 @@ const computedOgType: "website" | "article" = ogType ?? (canonical.includes("/bl
 <meta name="twitter:description" content={ogDesc} />
 {hasOg && <meta name="twitter:image" content={absoluteOgImage} />}
 
+{/* 48x48 PNG first — Google Search requires 48x48+ for favicon in results */}
+<link rel="icon" href={`${site.url.replace(/\/$/, "")}/favicon-48.png`} type="image/png" sizes="48x48" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="alternate icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" href="/favicon.svg" />

@@ -25,6 +25,9 @@ const {
 } = Astro.props;
 const CF_TOKEN = import.meta.env.PUBLIC_CF_BEACON_TOKEN || "";
 const canonical = new URL(canonicalPath, site.url).toString();
+
+// Allow Google Fonts stylesheet in CSP (Astro generates script/style hashes; we add external style source)
+Astro.csp.insertDirective("style-src https://fonts.googleapis.com");
 ---
 
 <!doctype html>
@@ -52,8 +55,16 @@ const canonical = new URL(canonicalPath, site.url).toString();
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" id="fonts-stylesheet" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+    <script>
+      (function () {
+        const el = document.getElementById("fonts-stylesheet");
+        if (!el) return;
+        if (el.sheet) el.media = "all";
+        else el.addEventListener("load", function () { this.media = "all"; });
+      })();
+    </script>
 
     <SEO
       title={title}

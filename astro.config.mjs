@@ -8,6 +8,14 @@ const site = siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`;
 export default defineConfig({
   site,
   integrations: [sitemap(), react()],
+  experimental: {
+    csp: {
+      scriptDirective: {
+        resources: ["https://static.cloudflareinsights.com"],
+        strictDynamic: true,
+      },
+    },
+  },
   server: {
     host: true, // Expose to local network
     port: 4321,

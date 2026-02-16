@@ -1166,8 +1166,20 @@ const jsonLd = {
           row.classList.remove('is-open');
           btn.setAttribute('aria-expanded', 'false');
         } else {
-          // Open this one
-          panel.style.maxHeight = panel.scrollHeight + 'px';
+          // Open this one — when collapsed, scrollHeight can be 0, so measure first
+          let targetHeight = panel.scrollHeight;
+          if (targetHeight === 0) {
+            const content = panel.querySelector<HTMLElement>('.details-content');
+            targetHeight = content ? content.scrollHeight : 0;
+          }
+          if (targetHeight === 0) {
+            panel.style.maxHeight = 'none';
+            targetHeight = panel.scrollHeight;
+            panel.style.maxHeight = '0';
+            void panel.offsetHeight; // force reflow
+          }
+          if (targetHeight === 0) targetHeight = 400; // fallback if content not yet laid out
+          panel.style.maxHeight = targetHeight + 'px';
           row.classList.add('is-open');
           btn.setAttribute('aria-expanded', 'true');
 
@@ -1184,8 +1196,6 @@ const jsonLd = {
 
     // First row is already open in HTML; just ensure handlers are attached
   }
-
-  initWorkAccordion();
 
   // Autoplay video after 2 seconds
   setTimeout(() => {

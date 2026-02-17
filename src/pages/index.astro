@@ -112,7 +112,7 @@ const jsonLd = {
                   <p class="details-description">
                     TUCN Media's site gives the Calgary-based creative studio a focused digital home to showcase their video, photo, and design work to local businesses and brands. Clean, spacious layouts keep the spotlight on bold visuals and case studies, making it easy for potential clients to understand what the studio does and how they work. Clear service breakdowns, concise copy, and straightforward navigation create a smooth, no-nonsense experience that reflects TUCN Media's practical, results-driven approach to content creation.
                   </p>
-                  <div class="details-images" style="--images: 3;">
+                  <div class="details-images details-images--3">
                     <ResponsiveLightboxImage src={tucnHome} alt="TUCN Media homepage" />
                     <ResponsiveLightboxImage src={tucnServices} alt="TUCN Media services" />
                     <ResponsiveLightboxImage src={tucnReviews} alt="TUCN Media reviews" />
@@ -135,7 +135,7 @@ const jsonLd = {
                   <p class="details-description">
                     Pure Glow Electric's website provides a professional online presence for the electrical services company, making it simple for customers to learn about their services and get in touch. The site features clear service descriptions, contact information, and a user-friendly layout that helps visitors quickly find what they need.
                   </p>
-                  <div class="details-images" style="--images: 3;">
+                  <div class="details-images details-images--3">
                     <ResponsiveLightboxImage src={pureGlowHome} alt="Pure Glow Electric homepage" />
                     <ResponsiveLightboxImage src={pureGlowServices} alt="Pure Glow Electric services" />
                     <ResponsiveLightboxImage src={pureGlowFaq} alt="Pure Glow Electric FAQ" />
@@ -770,6 +770,10 @@ const jsonLd = {
     justify-content: center;
     --images: 1; /* fallback */
     height: auto;
+  }
+
+  .details-images--3 {
+    --images: 3;
   }
 
   .details-images img {
